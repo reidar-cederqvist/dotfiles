@@ -22,4 +22,4 @@ for file in $files; do
     mv ~/.$file ~/dotfiles_old/ >/dev/null
     ln -s $dir/$file ~/.$file
 done
-echo "done"
+echo "done creating symlinks"
