@@ -1,0 +1,4 @@
+#!/bin/sh
+
+PERCENT=$(upower -e | grep BAT | xargs upower -i | awk '/percentage/{print substr($2, 0, index($2, "%")-1)}')
+echo -e "$PERCENT" 
