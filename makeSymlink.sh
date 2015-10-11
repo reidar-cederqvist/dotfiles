@@ -6,7 +6,7 @@
 ########## Variables
 
 dir=~/dotfiles                    # dotfiles directory
-olddir=~/dotfiles_old             # old dotfiles backup directory
+olddir=~/oldDotfiles             # old dotfiles backup directory
 files="screenrc vimrc screen-batstatus"    # list of files/folders to symlink in homedir
 
 ##########
@@ -19,7 +19,7 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
-    mv ~/.$file ~/dotfiles_old/ >/dev/null
+    mv ~/.$file $olddir/ >/dev/null
     ln -s $dir/$file ~/.$file
 done
 echo "done creating symlinks"
