@@ -22,3 +22,5 @@ activity "Activity in %t(%n)"
 shelltitle "shell"
 shell -$SHELL
 termcapinfo xterm* ti@:te@
+
+logfile /tmp/screen_log_file
