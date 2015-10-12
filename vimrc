@@ -34,5 +34,5 @@ au VimLeave * :call MakeSession()
 " autocmd BufWinEnter * :call LoadSession()
 autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
-colorscheme desert
+colorscheme evening
 let g:NERDTreeWinSize = 40
