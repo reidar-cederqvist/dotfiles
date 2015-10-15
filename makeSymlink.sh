@@ -7,7 +7,7 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/oldDotfiles             # old dotfiles backup directory
-files="screenrc vimrc screen-batstatus"    # list of files/folders to symlink in homedir
+files="vimrc tmux.conf Xresources"    # list of files/folders to symlink in homedir
 
 ##########
 

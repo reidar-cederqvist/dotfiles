@@ -36,3 +36,4 @@ autocmd BufWinLeave *.* mkview!
 autocmd BufWinEnter *.* silent loadview
 colorscheme evening
 let g:NERDTreeWinSize = 40
+set mouse=a
