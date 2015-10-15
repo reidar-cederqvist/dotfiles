@@ -1,0 +1,17 @@
+##file .Xtermresources
+
+###fonts###
+xterm*font: -*-fixed-medium-r-*-*-12-*-*-*-*-*-iso8859-*
+
+XTerm*background: black
+XTerm*foreground: white
+XTerm*pointerColor: red
+XTerm*pointerColorBackground: black
+XTerm*cursorColor: green
+XTerm*internalBorder: 3
+XTerm*loginShell: true
+XTerm*scrollBar: false
+XTerm*scrollKey: true
+XTerm*saveLines: 1000
+XTerm*multiClickTime: 250
+XTerm*boldMode: false
