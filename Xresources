@@ -1,8 +1,10 @@
 ##file .Xtermresources
 
 ###fonts###
-xterm*font: -*-fixed-medium-r-*-*-16-*-*-*-*-*-iso8859-*
+xTerm*font: -shumacher-*-*-*-*-*-12-*-*-*-*-*-iso8859-16
 
+
+xTerm*boldFont: fixed
 XTerm*background: black
 XTerm*foreground: white
 XTerm*pointerColor: red
