@@ -1,7 +1,7 @@
 ##file .Xtermresources
 
 ###fonts###
-xterm*font: -*-fixed-medium-r-*-*-12-*-*-*-*-*-iso8859-*
+xterm*font: -*-fixed-medium-r-*-*-16-*-*-*-*-*-iso8859-*
 
 XTerm*background: black
 XTerm*foreground: white
