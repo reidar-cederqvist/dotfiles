@@ -6,7 +6,16 @@ set tabstop=4
 set shiftwidth=4
 set autoindent
 map <C-n> :NERDTreeToggle<CR>
-colorscheme evening
+colorscheme default
 let g:NERDTreeWinSize = 40
 set mouse=a
 set ww=l,h,b,s,<,>,[,]
+:highlight ExtraWhitespace ctermbg=red guibg=red
+
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
+
+:highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+
+
+
+:match ExtraWhitespace /\s\+$\| \+\ze\t/
