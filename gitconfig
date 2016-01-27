@@ -1,0 +1,12 @@
+[user]
+	email = reidar.cederqvist@gmail.com
+	name = Reidar Cederqvist
+[push]
+	default = simple
+[core]
+	editor = vim
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
