@@ -12,17 +12,12 @@ syntax on
 "enable pathogen
 execute pathogen#infect()
 "insert ▸ + the rest spaces for tab and - for traling whitespaces
-set listchars=tab:▸\ ,eol:¬,trail:-
+set listchars=tab:\ \ ,eol:¬,trail:-
 "fix searches
 set gdefault
 set ignorecase
 set showmatch
 set smartcase
-"Make it obvious where 100 char is
-set textwidth=100
-set formatoptions=qrn1
-set wrapmargin=0
-set colorcolumn=+1
 "split to right and bottom
 set splitright
 "HTML Editing
@@ -89,6 +84,9 @@ vnoremap <tab> %
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 nnoremap <leader>q @q
+nnoremap <leader>f @f
+nnoremap <leader>w @w
+nnoremap <leader>e @e
 " Quickly close windows
 nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
@@ -100,3 +98,9 @@ autocmd BufReadPost *
 	\   exe "normal g`\"" |
 	\ endif
 inoremap <Esc> wrong try again
+"open nerdtree when no argument was given
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"fixe so that you can use = to fix indentation to 4-space taab
+set shiftwidth=4
+set tabstop=4
