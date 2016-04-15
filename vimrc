@@ -5,7 +5,7 @@ set nocompatible
 " Map leader to spacbar
 let mapleader = " "
 " Map jj to esc  
-ino jj <esc>
+ino jj <Esc>
 vno v <esc>
 "enable syntax colors
 syntax on
@@ -73,7 +73,6 @@ noremap <C-J> <C-w>j
 noremap <C-L> <C-w>l
 noremap <C-K> <C-w>k
 noremap <C-H> <C-w>h
-nnoremap <CR> o<Esc>
 " ================ Scrolling ========================
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
@@ -90,6 +89,7 @@ nnoremap <leader>e @e
 " Quickly close windows
 nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
+nnoremap <leader>kd :w<cr>:make debug<cr><cr><cr>
 " When editing a file, always jump to the last known cursor position.
   " Don't do it for commit messages, when the position is invalid, or when
     " inside an event handler (happens when dropping a file on gvim).
@@ -97,7 +97,6 @@ autocmd BufReadPost *
 	\ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
 	\   exe "normal g`\"" |
 	\ endif
-inoremap <Esc> wrong try again
 "open nerdtree when no argument was given
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
