@@ -24,12 +24,18 @@ cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
-    mv ~/.$file $olddir/ >/dev/null
+	if [ -a ~/.$file ] 
+		then
+    	mv ~/.$file $olddir/ >/dev/null
+	fi
     ln -s $dir/$file ~/.$file
 done
 #install curl
-echo 'installing curl'
-sudo apt-get install -y curl
+if [ -z "$(curl --version 2>/dev/null)" ]
+	then
+	echo 'installing curl'
+	sudo apt-get install -yqq curl
+fi
 #download pathogen
 if [ -z "$(ls ~/.vim/autoload)" ]
 	then
