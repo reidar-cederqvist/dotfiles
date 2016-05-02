@@ -61,6 +61,10 @@ if [ -z "$(ls ~/iopsys)" ]
 	then
 	cd ~
 	echo downloading IOPSYS repo
-	git clone git@public.inteno.se:iopsys-barrier-breaker iopsys && cd iopsys && ./iop bootstrap
+	git clone git@public.inteno.se:iopsys-barrier-breaker iopsys && cd iopsys && git co devel && ./iop bootstrap
+fi
+if [ -a ./ssh_config ]
+	then
+	cp ./ssh_config ~/.ssh/config
 fi
 echo "done creating symlinks"
