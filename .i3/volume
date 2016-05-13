@@ -1,0 +1,36 @@
+device=$(pactl list | grep -B 1 RUNNING | awk '/Sink #/ { print $2 }' | sed 's/#//g')
+function getVolume(){
+	mute=$(pactl list sinks | grep -A10 'RUNNING' | awk '/Mute:/ { print $2 }')
+	volume=$(pactl list sinks | grep -A10 'RUNNING' | awk '/Volume:/ { print $3 }')
+	if [ "$mute" == "no" ]; then
+		if [ $(echo $volume | sed 's/%//g') -lt 50 ]; then
+			echo    $volume
+		else
+			echo    $volume
+		fi
+	else
+		echo   0%
+	fi
+}
+function volumePlus(){
+	pactl set-sink-volume $device -- +5%
+}
+function volumeMinus(){
+	pactl set-sink-volume $device -- -5%
+}
+function muteToggle(){
+	pactl set-sink-mute $device toggle
+}
+case "$1" in 
+	"get")
+		getVolume
+	;;
+	"inc")
+		volumePlus
+	;;
+	"dec")
+		volumeMinus
+	;;
+	"mute")
+		muteToggle
+esac

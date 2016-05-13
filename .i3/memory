@@ -1,0 +1,21 @@
+#!/bin/bash
+
+TYPE="mem"
+
+awk '
+	/^MemTotal:/ {
+		mem_total=$2
+	}
+	/^MemFree:/ {
+		mem_free=$2
+	}
+	/^Buffers:/ {
+		mem_free+=$2
+	}
+	/^Cached:/ {
+		mem_free+=$2
+	}
+	END {
+		printf("%.1fG", mem_free/1024/1024)
+	}
+' /proc/meminfo

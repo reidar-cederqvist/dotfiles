@@ -1,0 +1,4 @@
+artist=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | awk '/artist/ { getline; getline; $1 = ""; print $0}' | sed 's/^[ ]*//' | sed 's/^"//' | sed 's/"$//')
+song=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | awk '/title"/ { getline;$1=$2="";print $0}' | sed 's/[ ]*//g' | sed 's/^"//' | sed 's/"$//')
+echo song: $song
+echo artist: $artist
