@@ -1,7 +1,7 @@
 ##file .Xtermresources
 
 ###fonts###
-xTerm*font: -shumacher-*-*-*-*-*-12-*-*-*-*-*-iso8859-16
+xTerm*font: -shumacher-*-*-*-*-*-12-*-*-*-*-*-iso8859-24
 
 
 xTerm*boldFont: fixed
