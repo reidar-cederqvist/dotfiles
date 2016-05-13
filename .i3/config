@@ -172,7 +172,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always --no-startup-id ~/.i3/monitor_config.sh
+exec_always --no-startup-id ~/.i3/monitor_setup.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id xset s off
 exec --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
