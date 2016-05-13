@@ -16,6 +16,8 @@ awk '
 		mem_free+=$2
 	}
 	END {
-		printf("%.1fG", mem_free/1024/1024)
+		printf("%.1fG\n", mem_free/1024/1024)
+		printf("%.1fG\n", mem_free/1024/1024)
+		printf("#b35900\n")
 	}
 ' /proc/meminfo
