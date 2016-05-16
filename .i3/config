@@ -177,6 +177,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xset s off
 exec --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
 exec ssh-add ~/.ssh/id_rsa
+exec set -o vi
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
