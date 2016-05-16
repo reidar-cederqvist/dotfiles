@@ -173,11 +173,13 @@ bindsym XF86AudioPrev exec playerctl previous
 focus_follows_mouse no
 
 exec_always --no-startup-id ~/.i3/monitor_setup.sh
+exec ssh-add ~/.ssh/id_rsa
 exec --no-startup-id nm-applet
 exec --no-startup-id xset s off
 exec --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
-exec ssh-add ~/.ssh/id_rsa
-exec set -o vi
+exec --no-startup-id set -o vi
+#exec --no-startup-id i3-msg 'workspace 1'
+#exec --no-startup-id /usr/bin/google-chrome
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
