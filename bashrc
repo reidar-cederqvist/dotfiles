@@ -4,3 +4,6 @@ alias iopg='./iop genconfig'
 alias mp='rm -rf bin/* && make -j9'
 alias mj='make package/feeds/feed_inteno_juci/juci/compile'
 alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
+sett(){
+	echo -en "\033]0;$1\a"
+}

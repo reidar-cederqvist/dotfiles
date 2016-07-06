@@ -176,9 +176,9 @@ exec_always --no-startup-id ~/.i3/monitor_setup.sh
 exec ssh-add ~/.ssh/id_rsa
 exec --no-startup-id nm-applet
 exec --no-startup-id xset s off
-exec --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
+exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.png | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
 exec --no-startup-id set -o vi
-#exec --no-startup-id i3-msg 'workspace 1'
+#exec --no-startup-id i3-msg 'workspace 1
 #exec --no-startup-id /usr/bin/google-chrome
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
