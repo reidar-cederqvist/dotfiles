@@ -36,20 +36,13 @@ if [ -z "$(curl --version 2>/dev/null)" ]
 	echo 'installing curl'
 	sudo apt-get install -yqq curl
 fi
-#download pathogen
-if [ -z "$(ls ~/.vim/autoload)" ]
-	then
-	echo installing pathogen infect
-	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+#download vundle
+if [ -z "$(ls ~/.vim/bundle/Voundle.vim)" ]; then
+	echo installing Vundle
+	mkdir -p ~/.vim/bundle/
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-#download nerdtree
-if [ -z "$(ls ~/.vim/bundle/nerdtree)" ]
-	then
-	echo instlaling nerdtree
-	cd ~/.vim/bundle
-	git clone https://github.com/scrooloose/nerdtree.git
-fi
+
 #download juci
 if [ -z "$(ls ~/juci)" ]
 	then
