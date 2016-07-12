@@ -11,6 +11,7 @@ Plugin 'VundleVim/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
@@ -30,15 +31,26 @@ Plugin 'valloric/youcompleteme'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
+" ==== end of vundle ============== "
+
+" ========== Ultisnips ============ "
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger = "<leader>j"
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsJumpForwardTrigger="<leader>j"
+let g:UltiSnipsJumpBackwardTrigger="<leader>k"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+" ======== end Ultisnips ========== "
 filetype plugin indent on
 " Type :so % to refresh .vimrc after making changes
-let g:ycm_extra_conf_vim_data = []
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
 " Map leader to spacbar
 let mapleader = " "
-" Map jj to esc  
+" Map jj to esc
 ino jj <Esc>
 vno v <esc>
 "enable syntax colors
@@ -109,9 +121,6 @@ noremap <C-H> <C-w>h
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
-" Use tab to jump between blocks, because it's easier
-nnoremap <tab> %
-vnoremap <tab> %
 """ SYSTEM CLIPBOARD COPY & PASTE SUPPORT
 set pastetoggle=<F2> "F2 before pasting to preserve indentation
 nnoremap <leader>q @q
