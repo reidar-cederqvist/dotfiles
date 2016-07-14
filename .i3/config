@@ -176,7 +176,7 @@ exec_always --no-startup-id ~/.i3/monitor_setup.sh
 exec ssh-add ~/.ssh/id_rsa
 exec --no-startup-id nm-applet #open network-applet
 exec --no-startup-id xset s off #turn off screensaver (blank screen)
-exec --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
+exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR{*.png,*.jpg} | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {

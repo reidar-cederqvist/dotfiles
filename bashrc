@@ -8,6 +8,7 @@ sett(){
 	echo -en "\033]0;$1\a"
 }
 makepkg(){
+	cd ~/iopsys
 	[ "$1" == "" ] && echo "Need argument" && exit;
 	make $(find package -name $1)/compile V=s
 }
