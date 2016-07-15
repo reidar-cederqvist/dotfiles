@@ -3,3 +3,17 @@ snippet t
 	$0
 </${1/([^\s]+).*/$1/}>
 endsnippet
+
+snippet page
+<juci-layout-with-sidebar>
+	<div ng-controller="$1">
+		<juci-config-heading>{{ '$2'|translate}}</juci-config-heading>
+		<juci-config-info>{{'$3'|translate}}</juci-config-info>
+		<juci-config-section>
+			<juci-config-lines>
+				$0
+			</juci-config-lines>
+		</juci-config-section>
+	</div>
+</juci-layout-with-sidebar>
+endsnippet
