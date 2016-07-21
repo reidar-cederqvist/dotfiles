@@ -13,7 +13,6 @@ files="bashrc vimrc tmux.conf Xresources gitconfig"    # list of files/folders t
 
 # create dotfiles_old in homedir
 mkdir -p $olddir
-sudo chown -R $(logname):$(logname) $olddir
 
 # change to the dotfiles directory
 cd $dir
@@ -26,7 +25,7 @@ for file in $files; do
 	fi
     ln -s $dir/$file ~/.$file
 done
-sudo chown -R $(logname):$(logname) $dir
+
 #install curl
 if [ -z "$(curl --version 2>/dev/null)" ]
 	then
@@ -34,12 +33,11 @@ if [ -z "$(curl --version 2>/dev/null)" ]
 	sudo apt-get install -yqq curl
 fi
 #download vundle
-if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
+if [ -z "$(ls ~/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
 	echo installing Vundle
 	mkdir -p ~/.vim/bundle/
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-sudo chown -R $(logname):$(logname) ~/.vim/bundle/Vundle.vim
 
 #download juci
 if [ -z "$(ls ~/juci 2>/dev/null)" ]
@@ -48,17 +46,17 @@ if [ -z "$(ls ~/juci 2>/dev/null)" ]
 	cd ~
 	git clone git@public.inteno.se:juci juci && cd ~/juci && cp example-Makefile.local Makefile.local
 fi
-sudo chown -R $(logname):$(logname) ~/juci
+
 if [ -z "$(ls ~/iopsys 2>/dev/null)" ]
 	then
 	cd ~
 	echo downloading IOPSYS repo
 	git clone git@public.inteno.se:iopsys iopsys && cd iopsys && git co devel && ./iop bootstrap
 fi
-sudo chown -R $(logname):$(logname) ~/iopsys
+
 if [ -a ./ssh_config ]
 	then
 	cp ./ssh_config ~/.ssh/config
 fi
-sudo chown $(logname):$(logname) ~/.ssh/config
+
 echo "done creating symlinks"
