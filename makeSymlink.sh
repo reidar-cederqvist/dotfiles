@@ -2,11 +2,6 @@
 ############################
 # This script creates symlinks from the home directory to any desired dotfiles in ~/dotfiles
 ############################
-#Make sure this is run as root
-if [ "$(id -u)" != "0" ]; then
-	echo "This script must be run as root" 1>&2
-	exit 1
-fi
 
 ########## Variables
 
@@ -18,20 +13,20 @@ files="bashrc vimrc tmux.conf Xresources gitconfig"    # list of files/folders t
 
 # create dotfiles_old in homedir
 mkdir -p $olddir
-chown -R $(logname):$(logname) $olddir
+sudo chown -R $(logname):$(logname) $olddir
 
 # change to the dotfiles directory
 cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
-	if [ -a ~/.$file ] 
+	if [ -a ~/.$file ]
 		then
     	mv ~/.$file $olddir/ >/dev/null
 	fi
     ln -s $dir/$file ~/.$file
 done
-chown -R $(logname):$(logname) $dir
+sudo chown -R $(logname):$(logname) $dir
 #install curl
 if [ -z "$(curl --version 2>/dev/null)" ]
 	then
@@ -44,26 +39,26 @@ if [ -z "$(ls ~/.vim/bundle/Vundle.vim)" ]; then
 	mkdir -p ~/.vim/bundle/
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
-chown -R $(logname):$(logname) ~/.vim/bundle/Vundle.vim
+sudo chown -R $(logname):$(logname) ~/.vim/bundle/Vundle.vim
 
 #download juci
-if [ -z "$(ls ~/juci)" ]
+if [ -z "$(ls ~/juci 2>/dev/null)" ]
 	then
 	echo downloading JUCI repo
 	cd ~
-	git clone git@public.inteno.se:juci.git juci && cd juci && cp example-Makefile.local Makefile.local
+	git clone git@public.inteno.se:juci juci && cd ~/juci && cp example-Makefile.local Makefile.local
 fi
-chown -R $(logname):$(logname) ~/juci
-if [ -z "$(ls ~/iopsys)" ]
+sudo chown -R $(logname):$(logname) ~/juci
+if [ -z "$(ls ~/iopsys 2>/dev/null)" ]
 	then
 	cd ~
 	echo downloading IOPSYS repo
-	git clone git@public.inteno.se:iopsys-barrier-breaker iopsys && cd iopsys && git co devel && ./iop bootstrap
+	git clone git@public.inteno.se:iopsys iopsys && cd iopsys && git co devel && ./iop bootstrap
 fi
-chown -R $(logname):$(logname) ~/iopsys
+sudo chown -R $(logname):$(logname) ~/iopsys
 if [ -a ./ssh_config ]
 	then
 	cp ./ssh_config ~/.ssh/config
 fi
-chown $(logname):$(logname) ~/.ssh/config
+sudo chown $(logname):$(logname) ~/.ssh/config
 echo "done creating symlinks"
