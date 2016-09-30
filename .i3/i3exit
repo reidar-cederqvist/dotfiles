@@ -9,10 +9,10 @@ case "$1" in
         i3-msg exit
         ;;
     reboot)
-        dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart
+        systemctl reboot
         ;;
     shutdown)
-        dbus-send --system --print-reply --dest="org.freedesktop.ConsoleKit" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop
+        systemctl poweroff
         ;;
     *)
         echo "Usage: $0 {lock|logout|reboot|shutdown}"

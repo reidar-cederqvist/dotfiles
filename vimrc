@@ -1,3 +1,4 @@
+" Type :so % to refresh .vimrc after making changes
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -44,7 +45,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 " ======== end Ultisnips ========== "
 filetype plugin indent on
-" Type :so % to refresh .vimrc after making changes
 set laststatus=2
 set encoding=utf-8
 set t_Co=256

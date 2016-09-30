@@ -149,13 +149,13 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3blocks -c /home/reidar/.i3/i3blocks.conf
+        status_command i3blocks -c /home/reidar/dotfiles/.i3/i3blocks.conf
 		font pango:DejaVu Sans Mono, Awesome 12
 }
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.i3/volume inc #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id ~/.i3/volume dec #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id ~/.i3/volume mute # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/dotfiles/.i3/volume inc #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/.i3/volume dec #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id ~/dotfiles/.i3/volume mute # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -172,18 +172,18 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always --no-startup-id ~/.i3/monitor_setup.sh
-exec ssh-add ~/.ssh/id_rsa
-exec --no-startup-id nm-applet #open network-applet
-exec --no-startup-id xset s off #turn off screensaver (blank screen)
-exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR{*.png,*.jpg} | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
+exec --no-startup-id compton
+exec_always --no-startup-id /home/reidar/dotfiles/.i3/monitor_setup.sh
+exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
+exec --no-startup-id ssh-add
+
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id ~/.i3/i3exit lock, mode "default"
-    bindsym e exec --no-startup-id ~/.i3/i3exit logout, mode "default"
-    bindsym r exec --no-startup-id ~/.i3/i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id ~/.i3/i3exit shutdown, mode "default"
+    bindsym l exec --no-startup-id ~/dotfiles/.i3/i3exit lock, mode "default"
+    bindsym e exec --no-startup-id ~/dotfiles/.i3/i3exit logout, mode "default"
+    bindsym r exec --no-startup-id ~/dotfiles/.i3/i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id ~/dotfiles/.i3/i3exit shutdown, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"

@@ -1,5 +1,8 @@
 device=$(pacmd list-sinks | awk '/\* index:/ { print $3 }')
 volume=$(pacmd list-sinks | awk '/\* index:/ { while($1 != "volume:"){ getline;} print $3 }')
+if [ $(echo $volume | sed 's/%//') -gt 500 ]; then
+	volume=$(pacmd list-sinks | awk '/\* index:/ { while($1 != "volume:"){ getline;} print $5 }')
+fi
 mute=$(pacmd list-sinks | awk '/\* index:/ { while($1 != "muted:" && getline != 0){}print $2 }')
 function getVolume(){
 	if [ "$mute" == "no" ]; then
@@ -19,13 +22,13 @@ function getVolume(){
 	fi
 }
 function volumePlus(){
-	[ $(echo $volume | sed 's/%//') -lt 100 ] && pactl set-sink-volume $device -- +5%; pkill -RTMIN+1 i3blocks;
+	[ $(echo $volume | sed 's/%//') -lt 100 ] && pactl set-sink-volume $device +5%; pkill -RTMIN+1 i3blocks;
 }
 function volumeMinus(){
-	[ $(echo $volume | sed 's/%//') -gt 0 ] && pactl set-sink-volume $device -- -5%; pkill -RTMIN+1 i3blocks;
+	[ $(echo $volume | sed 's/%//') -gt 0 ] && pactl set-sink-volume $device -5%; pkill -RTMIN+1 i3blocks;
 }
 function muteToggle(){
-	pactl set-sink-mute $device toggle
+	pactl set-sink-mute $device toggle && pactl set-sink-volume $device +5%; pkill -RTMIN+1 i3blocks;
 }
 case "$1" in 
 	"get")
