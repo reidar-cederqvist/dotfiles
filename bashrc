@@ -1,6 +1,7 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+. ~/.prompt_colors.sh
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -37,23 +38,24 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
 	# We have color support; assume it's compliant with Ecma-48
 	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
 	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+		color_prompt=yes
     else
-	color_prompt=
+		color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
+	PS1="${orange}${bold}[${green}\u${orange}] (${blue}\w${orange})${normal}${orange}-> ${default}"
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+	PS1="┌—————————————(\u)—————————————(\w) \n└> $ "
 fi
 unset color_prompt force_color_prompt
 
@@ -105,6 +107,7 @@ alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
 alias reboot='systemctl reboot'
 alias shutdown='systemctl shutdown'
 alias resetkb='setxkbmap -layout se -variant nodeadkeys'
+alias c='clear'
 
 sett(){
 	echo -en "\033]0;$1\a"
