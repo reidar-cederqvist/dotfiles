@@ -1,6 +1,5 @@
 " Type :so % to refresh .vimrc after making changes
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -15,11 +14,10 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'christoomey/vim-system-copy'
-Plugin 'SirVer/ultisnips'
+" Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
-Plugin 'easymotion/vim-easymotion'
+" Plugin 'easymotion/vim-easymotion'
 Plugin 'Lokaltog/vim-powerline'
-Plugin 'valloric/youcompleteme'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -38,16 +36,19 @@ call vundle#end()
 " ==== end of vundle ============== "
 
 " ========== Ultisnips ============ "
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger = "<c-e>"
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+" let g:UltiSnipsExpandTrigger = "<c-e>"
+" let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+" let g:UltiSnipsJumpForwardTrigger="<c-f>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+" " If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 " ======== end Ultisnips ========== "
 filetype plugin indent on
+" enable finding files in sub-directories with find
+set path+=**
+set wildmenu
 set hls
 set laststatus=2
 set encoding=utf-8
@@ -110,13 +111,9 @@ set list
 set tabstop=4
 set shiftwidth=4
 set autoindent
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 50
 set ww=l,h,b,s,<,>,[,]
-nnoremap WQ wq
-nnoremap Wq wq
-nnoremap W w
-nnoremap Q q
 noremap <C-J> <C-w>j
 noremap <C-L> <C-w>l
 noremap <C-K> <C-w>k
@@ -136,15 +133,15 @@ nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
 nnoremap <leader>kd :w<cr>:make debug<cr><cr><cr>
 " When editing a file, always jump to the last known cursor position.
-  " Don't do it for commit messages, when the position is invalid, or when
-    " inside an event handler (happens when dropping a file on gvim).
-autocmd BufReadPost *
+" Don't do it for commit messages, when the position is invalid, or when
+" inside an event handler (happens when dropping a file on gvim).
+" autocmd BufReadPost *
 	\ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
 	\   exe "normal g`\"" |
 	\ endif
-"open nerdtree when no argument was given
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"fixe so that you can use = to fix indentation to 4-space taab
+" open nerdtree when no argument was given
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" fixe so that you can use = to fix indentation to 4-space taab
 set shiftwidth=4
 set tabstop=4
