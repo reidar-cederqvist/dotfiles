@@ -73,6 +73,20 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias iopf='./iop feeds_update'
+alias iopu='./iop update_package'
+alias iopg='./iop genconfig'
+alias mp='rm -rf bin/* && make -j9'
+alias mj='make package/feeds/feed_inteno_juci/juci/compile'
+alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
+alias reboot='systemctl reboot'
+alias shutdown='systemctl shutdown'
+alias resetkb='setxkbmap -layout se -variant nodeadkeys'
+alias c='clear'
+alias eb="vim ~/.bashrc"
+alias ei="vim ~/.config/i3/config"
+alias ev="vim ~/.vimrc"
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -97,17 +111,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-alias iopf='./iop feeds_update'
-alias iopu='./iop update_package'
-alias iopg='./iop genconfig'
-alias mp='rm -rf bin/* && make -j9'
-alias mj='make package/feeds/feed_inteno_juci/juci/compile'
-alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
-alias reboot='systemctl reboot'
-alias shutdown='systemctl shutdown'
-alias resetkb='setxkbmap -layout se -variant nodeadkeys'
-alias c='clear'
 
 sett(){
 	echo -en "\033]0;$1\a"

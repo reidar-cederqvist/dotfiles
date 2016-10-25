@@ -45,6 +45,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 let g:UltiSnipsEditSplit="vertical"
 " ======== end Ultisnips ========== "
 filetype plugin indent on
+set hls
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
