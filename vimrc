@@ -63,6 +63,7 @@ syntax on
 "insert ▸ + the rest spaces for tab and - for traling whitespaces
 set listchars=tab:\ \ ,eol:¬,trail:-
 "fix searches
+set hls
 set gdefault
 set ignorecase
 set showmatch

@@ -52,7 +52,8 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-#	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
+#	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————\
+#	${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
 	PS1="${orange}${bold}[${green}\u${orange}] (${blue}\w${orange})${normal}${orange}-> ${default}"
 else
 	PS1="┌—————————————(\u)—————————————(\w) \n└> $ "
@@ -67,30 +68,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias iopf='./iop feeds_update'
-alias iopu='./iop update_package'
-alias iopg='./iop genconfig'
-alias mp='rm -rf bin/* && make -j9'
-alias mj='make package/feeds/feed_inteno_juci/juci/compile'
-alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
-alias reboot='systemctl reboot'
-alias shutdown='systemctl shutdown'
-alias resetkb='setxkbmap -layout se -variant nodeadkeys'
-alias c='clear'
-alias eb="vim ~/.bashrc"
-alias ei="vim ~/.config/i3/config"
-alias ev="vim ~/.vimrc"
-
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -112,6 +89,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# some functions for stuff that is to advanced for alias
+
 sett(){
 	echo -en "\033]0;$1\a"
 }
@@ -125,7 +104,7 @@ makepkg(){
 
 router(){
 	if [ "$1" == "eg" ]; then vlanid="enp5s0.402";
-	elif [ "$1" == "dg2" ]; then vlanid="enp5s0.401";
+	elif [ "$1" == "dg3" ]; then vlanid="enp5s0.401";
 	elif [ "$1" == "dg4" ]; then vlanid="enp5s0.400";
 	else
 		return;
