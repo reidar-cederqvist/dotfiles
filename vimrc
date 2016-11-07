@@ -141,8 +141,8 @@ nnoremap <leader>kd :w<cr>:make debug<cr><cr><cr>
 	\   exe "normal g`\"" |
 	\ endif
 " open nerdtree when no argument was given
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " fixe so that you can use = to fix indentation to 4-space taab
 set shiftwidth=4
 set tabstop=4
