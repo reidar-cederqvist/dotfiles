@@ -4,6 +4,8 @@
 alias iopf='./iop feeds_update'
 alias iopu='./iop update_package'
 alias iopg='./iop genconfig'
+alias iopb='./iop bootstrap'
+alias iops='./iop ssh_sysupgrade_latest 192.168.1.1'
 alias mp='rm -rf bin/* && make -j9'
 alias mj='make package/feeds/feed_inteno_juci/juci/compile'
 alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
@@ -16,8 +18,12 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ev='vim ~/.vimrc'
 alias eb='vim ~/.bashrc'
+alias eba='vim ~/.bash_aliases'
 alias ei='vim ~/.config/i3/config'
 alias buildserver="ssh 10.10.1.31"
+alias jenkins3="ssh inteno@10.10.1.17"
+alias jenkins2="ssh inteno@10.10.1.31"
+alias jenkins="ssh inteno@10.10.1.14"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

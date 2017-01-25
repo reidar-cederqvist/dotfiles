@@ -51,13 +51,18 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-#	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————\
-#	${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
-	PS1="${orange}${bold}[${green}\u${orange}] (${blue}\w${orange})${normal}${orange}-> ${default}"
-else
-	PS1="┌—————————————(\u)—————————————(\w) \n└> $ "
-fi
+# if [ "$color_prompt" = yes ]; then
+# #	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————\
+# #	${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
+# 	PS1="${orange}${bold}[${green}\u${orange}] (${blue}\w${orange})${normal}${orange}-> ${default}"
+# else
+# 	PS1="┌—————————————(\u)—————————————(\w) \n└> $ "
+# fi
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+repository_root="$(pip show powerline-status | grep Location | cut -d ' ' -f 2)"
+. ${repository_root}/powerline/bindings/bash/powerline.sh
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
@@ -95,7 +100,7 @@ sett(){
 	echo -en "\033]0;$1\a"
 }
 makepkg(){
-	cd ~/iopsys
+#	cd ~/iopsys
 	[ "$1" == "" ] && echo "Need argument" && exit;
 	make $(find package -name $1)/compile V=s
 }
@@ -103,9 +108,9 @@ makepkg(){
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 router(){
-	if [ "$1" == "eg" ]; then vlanid="enp5s0.402";
-	elif [ "$1" == "dg3" ]; then vlanid="enp5s0.401";
-	elif [ "$1" == "dg4" ]; then vlanid="enp5s0.400";
+	if [ "$1" == "1" ]; then vlanid="enp5s0.400";
+	elif [ "$1" == "2" ]; then vlanid="enp5s0.401";
+	elif [ "$1" == "3" ]; then vlanid="enp5s0.402";
 	else
 		return;
 	fi
@@ -114,4 +119,15 @@ router(){
 	sudo ip link set enp5s0.402 down 2>/dev/null
 	sudo ip link set $vlanid up 2>/dev/null
 	sudo dhclient $vlanid 2>/dev/null
+}
+
+iopa(){
+	set -e
+	cd /home/reidar/iopsys
+	git co devel
+	git pull
+	iopf
+	iopg -c dg400 REIDAR
+	mp
+	iops
 }

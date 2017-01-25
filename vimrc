@@ -3,6 +3,7 @@ set nocompatible              " be iMproved, required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/home/reidar/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 call vundle#begin()
 
 " let Vundle manage Vundle, required
@@ -14,10 +15,11 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-scripts/ReplaceWithRegister'
 Plugin 'christoomey/vim-system-copy'
+Plugin 'valloric/youcompleteme'
 " Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
 " Plugin 'easymotion/vim-easymotion'
-Plugin 'Lokaltog/vim-powerline'
+" Plugin 'Lokaltog/vim-powerline'
 " plugin from http://vim-scripts.org/vim/scripts.html
 " Plugin 'L9'
 " Git plugin not hosted on GitHub
@@ -109,8 +111,8 @@ set visualbell "stop beeping
 "enable mouse
 set mouse=a
 set list
-set tabstop=4
-set shiftwidth=4
+set tabstop=8
+set shiftwidth=8
 set autoindent
 map <leader>n :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 50
@@ -129,6 +131,7 @@ nnoremap <leader>q @q
 nnoremap <leader>f @f
 nnoremap <leader>w @w
 nnoremap <leader>e @e
+nnoremap & $%
 " Quickly close windows
 nnoremap <leader>x :x<cr>
 nnoremap <leader>X :q!<cr>
@@ -136,7 +139,7 @@ nnoremap <leader>kd :w<cr>:make debug<cr><cr><cr>
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
 " inside an event handler (happens when dropping a file on gvim).
-" autocmd BufReadPost *
+autocmd BufReadPost *
 	\ if &ft != 'gitcommit' && line("'\"") > 0 && line("'\"") <= line("$") |
 	\   exe "normal g`\"" |
 	\ endif
@@ -144,5 +147,5 @@ nnoremap <leader>kd :w<cr>:make debug<cr><cr><cr>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " fixe so that you can use = to fix indentation to 4-space taab
-set shiftwidth=4
-set tabstop=4
+" set shiftwidth=4
+" set tabstop=4

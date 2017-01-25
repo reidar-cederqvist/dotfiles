@@ -10,3 +10,9 @@
 	ci = commit
 	br = branch
 	co = checkout
+
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = reidar.cederqvist@gmail.com
+	smtpServerPort = 587
