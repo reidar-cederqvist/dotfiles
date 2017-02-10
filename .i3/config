@@ -216,6 +216,7 @@ bindsym XF86AudioPrev exec playerctl previous
 focus_follows_mouse no
 
 exec --no-startup-id compton
+exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec_always --no-startup-id /home/reidar/dotfiles/.i3/monitor_setup.sh
 exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
 exec --no-startup-id export SSH_ASKPASS="/usr/bin/ssh-askpass";export DISPLAY=:0; ssh-add

@@ -51,17 +51,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# if [ "$color_prompt" = yes ]; then
-# #	PS1="${orange}┌———————————————${bold}(${green}\u${orange})${normal}${orange}———————————————\
-# #	${bold}(${blue}\w${orange})\n${normal}${orange}└> ${red}$  ${default}"
-# 	PS1="${orange}${bold}[${green}\u${orange}] (${blue}\w${orange})${normal}${orange}-> ${default}"
-# else
-# 	PS1="┌—————————————(\u)—————————————(\w) \n└> $ "
-# fi
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-repository_root="$(pip show powerline-status | grep Location | cut -d ' ' -f 2)"
+repository_root="/home/reidar/.local/lib/python2.7/site-packages"
 . ${repository_root}/powerline/bindings/bash/powerline.sh
 unset color_prompt force_color_prompt
 
@@ -108,17 +101,24 @@ makepkg(){
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
 router(){
-	if [ "$1" == "1" ]; then vlanid="enp5s0.400";
-	elif [ "$1" == "2" ]; then vlanid="enp5s0.401";
-	elif [ "$1" == "3" ]; then vlanid="enp5s0.402";
+	if [ "$1" == "1" ]; then vlan="enp5s0.400";
+	elif [ "$1" == "2" ]; then vlan="enp5s0.401";
+	elif [ "$1" == "3" ]; then vlan="enp5s0.402";
 	else
 		return;
 	fi
-	sudo ip link set enp5s0.400 down 2>/dev/null
-	sudo ip link set enp5s0.401 down 2>/dev/null
-	sudo ip link set enp5s0.402 down 2>/dev/null
-	sudo ip link set $vlanid up 2>/dev/null
-	sudo dhclient $vlanid 2>/dev/null
+	sudo ip link set enp5s0 down 2>/dev/null || exit 1
+	sudo ip link set enp5s0 up 2>/dev/null || exit 1
+	sudo ip l show dev enp5s0 2>&1 >/dev/null || exit 1
+	sudo ip a flush dev enp5s0 || exit 1
+	sudo dhclient enp5s0 || exit 1
+	sudo ip link set enp5s0.400 down 2>/dev/null || exit 1
+	sudo ip link set enp5s0.401 down 2>/dev/null || exit 1
+	sudo ip link set enp5s0.402 down 2>/dev/null || exit 1
+	sudo ip link set $vlan up 2>/dev/null || exit 1
+	sudo ip l show dev $vlan 2>&1 >/dev/null || exit 1
+	sudo ip a flush dev $vlan || exit 1
+	sudo dhclient $vlan 2>/dev/null || exit 1
 }
 
 iopa(){

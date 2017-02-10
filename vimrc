@@ -149,3 +149,5 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " fixe so that you can use = to fix indentation to 4-space taab
 " set shiftwidth=4
 " set tabstop=4
+" remove whitespace inside comment
+let b:commentary_format ='/*%s*/'

@@ -1,8 +1,8 @@
 #!/bin/bash
 usage="$(ifstat -S 5 1 | grep -o '[0-9]*\.[0-9]*')"
 
-down="$(echo $usage | cut -d ' ' -f 1 | cut -d '.' -f 1)"
-up="$(echo $usage | cut -d ' ' -f2 | cut -d '.' -f 1)"
+down="$(echo $usage | cut -d ' ' -f2 | cut -d '.' -f 1)"
+up="$(echo $usage | cut -d ' ' -f1 | cut -d '.' -f 1)"
 
 if [ ${#down} -lt 4 ]; then
 	echo -n " $down bit/s "

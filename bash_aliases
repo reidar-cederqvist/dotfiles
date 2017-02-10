@@ -20,6 +20,7 @@ alias ev='vim ~/.vimrc'
 alias eb='vim ~/.bashrc'
 alias eba='vim ~/.bash_aliases'
 alias ei='vim ~/.config/i3/config'
+alias send-img='scp bin/*/*.y2 root@routerlogin.net:/tmp/'
 alias buildserver="ssh 10.10.1.31"
 alias jenkins3="ssh inteno@10.10.1.17"
 alias jenkins2="ssh inteno@10.10.1.31"
