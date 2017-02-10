@@ -86,7 +86,7 @@ $hr
 ${if_running spotify}
 	${execi  10 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
 # --- Show wallpaper and cover ---
-	${image /home/reidar/dotfiles/conky/conky-spotify/current.jpg -p 0,400 -s 200x200 -n}
+	${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,400 -s 200x200 -n}
 # --- Show now playing information ---
 	${voffset 150}
 	${font Dejavu:size=12}Title:

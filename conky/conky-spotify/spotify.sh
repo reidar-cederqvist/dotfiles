@@ -20,7 +20,7 @@ get_title()
 }
 get_cover()
 {
-	id_current=$(cat ~/dotfiles/conky/conky-spotify/current.txt 2>/dev/null)
+	id_current=$(cat ~/dotfiles/conky/conky-spotify/current/current.txt 2>/dev/null)
 	id_new=$(get_id)
 	cover=
 	imgurl=
@@ -37,12 +37,12 @@ get_cover()
 		fi
 
 		if [ "$cover" != "" ]; then
-			cp ~/dotfiles/conky/conky-spotify/covers/$cover ~/dotfiles/conky/conky-spotify/current.jpg
+			cp ~/dotfiles/conky/conky-spotify/covers/$cover ~/dotfiles/conky/conky-spotify/current/current.jpg
 		else
-			cp ~/dotfiles/conky/conky-spotify/covers/empty.jpg ~/dotfiles/conky/conky-spotify/current.jpg
+			cp ~/dotfiles/conky/conky-spotify/covers/empty.jpg ~/dotfiles/conky/conky-spotify/current/current.jpg
 		fi
 
-		echo $id_new > ~/dotfiles/conky/conky-spotify/current.txt
+		echo $id_new > ~/dotfiles/conky/conky-spotify/current/current.txt
 	fi
 }
 

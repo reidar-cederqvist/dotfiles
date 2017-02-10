@@ -1,4 +1,3 @@
 .i3/monitor_setup.sh
-conky/conky-spotify/covers/*
-conky/conky-spotify/current.jpg
-conky/conky-spotify/current.txt
+conky/conky-spotify/covers/
+conky/conky-spotify/current/
