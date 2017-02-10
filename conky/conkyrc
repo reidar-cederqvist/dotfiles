@@ -84,7 +84,7 @@ ${color white} ${top name 7} ${top pid 7} ${top cpu 7} ${top mem 7}
 $hr
 # --- Get Spotify Cover ---
 ${if_running spotify}
-	${execi  10 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
+	${execi  1 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
 # --- Show wallpaper and cover ---
 	${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,400 -s 200x200 -n}
 # --- Show now playing information ---
