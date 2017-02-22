@@ -72,6 +72,8 @@ ${color white}RAM Usage:
 ${memgraph 28,400 00ff00 ff0000 -t}
 ${color white}CPU Usage:
 ${cpugraph 28,400 00ff00 ff0000 -t}
+${color white}Net Usage:
+${downspeedgraph enp5s0 28,400 00ff00 ff0000 -t}
 $hr
 ${color white}Name              PID   CPU%   MEM%
 ${color white} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
@@ -86,7 +88,7 @@ $hr
 ${if_running spotify}
 	${execi  1 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
 # --- Show wallpaper and cover ---
-	${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,400 -s 200x200 -n}
+	${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,460 -s 200x200 -n}
 # --- Show now playing information ---
 	${voffset 150}
 	${font Dejavu:size=12}Title:
