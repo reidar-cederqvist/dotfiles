@@ -14,7 +14,7 @@ set $mod Mod4
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:Terminus, Awesome 14
+font pango:DejaVu Sans Mono, Awesome 14
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
@@ -26,6 +26,10 @@ floating_modifier $mod
 
 #hide borders and titlebar
 new_window none
+
+# show borders for certain programs
+for_window[class="Gnome-terminal"] border normal 0
+# for_window[class="Skype"] border normal 0
 
 # browser pop-ups
 for_window [window_role="pop-up"] floting enable
@@ -119,16 +123,16 @@ for_window [class="Spotify"] move to workspace $workspace9
 # -- end of assigning window to workspace
 
 #set workspace 8, 9 and 10 on laptop-screen and the rest on big screen
-workspace $workspace1 output DP1
-workspace $workspace2 output DP1
-workspace $workspace3 output DP1
-workspace $workspace4 output DP1
-workspace $workspace5 output DP1
-workspace $workspace6 output DP1
-workspace $workspace7 output DP1
-workspace $workspace8 output eDP1
-workspace $workspace9 output eDP1
-workspace $workspace0 output eDP1
+workspace $workspace1 output DP-1-1
+workspace $workspace2 output DP-1-1
+workspace $workspace3 output DP-1-1
+workspace $workspace4 output DP-1-1
+workspace $workspace5 output DP-1-1
+workspace $workspace6 output DP-1-1
+workspace $workspace7 output DP-1-1
+workspace $workspace8 output eDP-1-1
+workspace $workspace9 output eDP-1-1
+workspace $workspace0 output eDP-1-1
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
