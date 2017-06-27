@@ -60,6 +60,9 @@ let mapleader = " "
 " Map jj to esc
 ino jj <Esc>
 vno v <esc>
+" Highlight lines over 80 chars
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%101v.\+/
 "enable syntax colors
 syntax on
 "insert ▸ + the rest spaces for tab and - for traling whitespaces
@@ -150,4 +153,4 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " set shiftwidth=4
 " set tabstop=4
 " remove whitespace inside comment
-let b:commentary_format ='/*%s*/'
+" let b:commentary_format ='/*%s*/'
