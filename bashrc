@@ -94,7 +94,7 @@ sett(){
 }
 makepkg(){
 #	cd ~/iopsys
-	[ "$1" == "" ] && echo "Need argument" && exit;
+	[ "$1" == "" ] && echo "Need argument" && return;
 	make $(find package -name $1)/compile V=s
 }
 
@@ -107,27 +107,19 @@ router(){
 	else
 		return;
 	fi
-	sudo ip link set enp5s0 down 2>/dev/null || exit 1
-	sudo ip link set enp5s0 up 2>/dev/null || exit 1
-	sudo ip l show dev enp5s0 2>&1 >/dev/null || exit 1
-	sudo ip a flush dev enp5s0 || exit 1
-	sudo dhclient enp5s0 || exit 1
-	sudo ip link set enp5s0.400 down 2>/dev/null || exit 1
-	sudo ip link set enp5s0.401 down 2>/dev/null || exit 1
-	sudo ip link set enp5s0.402 down 2>/dev/null || exit 1
-	sudo ip link set $vlan up 2>/dev/null || exit 1
-	sudo ip l show dev $vlan 2>&1 >/dev/null || exit 1
-	sudo ip a flush dev $vlan || exit 1
-	sudo dhclient $vlan 2>/dev/null || exit 1
+	sudo ifdown enp5s0.400 2>/dev/null
+	sudo ifdown enp5s0.401 2>/dev/null
+	sudo ifdown enp5s0.402 2>/dev/null
+	sudo ifup $vlan
+	echo -e "domain inteno.se\nsearch inteno.se\nnameserver 10.10.1.2\nnameserver 10.10.1.202" >/etc/resolv.conf
 }
 
 iopa(){
-	set -e
-	cd /home/reidar/iopsys
-	git co devel
-	git pull
-	iopf
-	iopg -c dg400 REIDAR
-	mp
-	iops
+	cd /home/reidar/git/iopsys || return 1
+	git co devel || return 1
+	git pull || return 1
+	iopf || return 1
+	iopg -c dg400 REIDAR || return 1
+	mp || return 1
+	iops || return 1
 }
