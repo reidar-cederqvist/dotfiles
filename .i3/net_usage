@@ -5,16 +5,23 @@ down="$(echo $usage | cut -d ' ' -f2 | cut -d '.' -f 1)"
 up="$(echo $usage | cut -d ' ' -f1 | cut -d '.' -f 1)"
 
 if [ ${#down} -lt 4 ]; then
-	echo -n " $down bit/s "
+	printf " %-4s b/s " $down
 elif [ ${#down} -lt 7 ]; then
-	echo -n " ${down:0:3}.${down:3} Mbit/s "
+	printf " %-3s Mb/s " ${down::-3}
 else
-	echo -n " ${down:0:3}.${down:3:3} Gbit/s "
+	printf " %-3s Gb/s " ${down::-3}
 fi
 if [ ${#up} -lt 4 ]; then
-	echo -n " $up bit/s "
+	printf " %-4s b/s\n" $up
 elif [ ${#up} -lt 7 ]; then
-	echo -n " ${up:0:3}.${up:3} Mbit/s "
+	printf " %-3s Mb/s\n" ${up::-3}
 else
-	echo -n " ${up:0:3}.${up:3:3} Gbit/s "
+	printf " %-3s Gb/s\n" ${up::-3}
+fi
+
+printf " %s b/s %d \n" $down ${#down}
+if [ ${#down} -gt 3 ]; then
+	printf "##FACC2E\n"
+else
+	printf "#ffffff\n"
 fi
