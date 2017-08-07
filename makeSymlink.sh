@@ -7,9 +7,10 @@
 
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/oldDotfiles             # old dotfiles backup directory
-files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases"    # list of files/folders to symlink in homedir
+# list of files/folders to symlink in homedir
+files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases"
 
-##########
+########## /Variables
 
 # create dotfiles_old in homedir
 mkdir -p $olddir
@@ -26,12 +27,15 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-#install curl
-if [ -z "$(curl --version 2>/dev/null)" ]
-	then
-	echo 'installing curl'
-	sudo apt-get install -yqq curl
+programsToInstall="curl conky gnome-keyring"
+#install programs
+
+echo -n "install $programsToInstall? [y]n: "
+read ans
+if [ "$ans" == "" -o "$ans" == "y" ]; then
+	sudo apt-get install -yqq $programsToInstall
 fi
+
 #download vundle
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
 	echo installing Vundle
@@ -40,23 +44,43 @@ if [ -z "$(ls ~/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
 fi
 
 #download juci
-if [ -z "$(ls ~/juci 2>/dev/null)" ]
+if [ -z "$(ls ~/git/juci 2>/dev/null)" ]
 	then
 	echo downloading JUCI repo
-	cd ~
-	git clone git@public.inteno.se:juci juci && cd ~/juci && cp example-Makefile.local Makefile.local
+	cd ~/git
+	git clone git@public.inteno.se:juci juci
+	cd ~/git/juci
+	git checkout devel
+	cp example-Makefile.local Makefile.local
 fi
 
-if [ -z "$(ls ~/iopsys 2>/dev/null)" ]
+if [ -z "$(ls ~/git/iopsys 2>/dev/null)" ]
 	then
-	cd ~
+	cd ~/git
 	echo downloading IOPSYS repo
-	git clone git@public.inteno.se:iopsys iopsys && cd iopsys && git co devel && ./iop bootstrap
+	git clone git@public.inteno.se:iopsys iopsys
+	cd iopsys
+	git co devel
+	./iop setup_host
+	./iop bootstrap
 fi
 
 if [ -a ./ssh_config ]
 	then
 	cp ./ssh_config ~/.ssh/config
 fi
+
+sudo cp /etc/pam.d/login /etc/pam.d.login.no-oldschool-convenience
+sudo cp /etc/pam.d/passwd /etc/pam.d.passwd.no-oldschool-convenience
+echo -e	'auth     optional  pam_gnome_keyring.so\n'\
+'session  optional  pam_gnome_keyring.so auto_start' |
+	sudo tee -a /etc/pam.d/login > /dev/null
+echo 'password  optional  pam_gnome_keyring.so' |
+	sudo tee -a /etc/pam.d/passwd > /dev/null
+echo '
+if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
+	eval $(dbus-launch --sh-syntax --exit-with-session)
+	export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
+fi' >> ~/.profile
 
 echo "done creating symlinks"
