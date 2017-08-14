@@ -36,33 +36,43 @@ if [ "$ans" == "" -o "$ans" == "y" ]; then
 	sudo apt-get install -yqq $programsToInstall
 fi
 
-#download vundle
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
-	echo installing Vundle
-	mkdir -p ~/.vim/bundle/
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	echo -n "install Vundle? [y]n: "
+	read ans
+	if [ "$ans" == "" -o "$ans" == "y" ]; then
+	#download vundle
+		echo installing Vundle
+		mkdir -p ~/.vim/bundle/
+		git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	fi
 fi
 
 #download juci
-if [ -z "$(ls ~/git/juci 2>/dev/null)" ]
-	then
-	echo downloading JUCI repo
-	cd ~/git
-	git clone git@public.inteno.se:juci juci
-	cd ~/git/juci
-	git checkout devel
-	cp example-Makefile.local Makefile.local
+if [ -z "$(ls ~/git/juci 2>/dev/null)" ]; then
+	echo -n "download juci? [y]n: "
+	read ans
+	if [ "$ans" == "" -o "$ans" == "y" ]; then
+		echo downloading JUCI repo
+		cd ~/git
+		git clone git@public.inteno.se:juci juci
+		cd ~/git/juci
+		git checkout devel
+		cp example-Makefile.local Makefile.local
+	fi
 fi
 
-if [ -z "$(ls ~/git/iopsys 2>/dev/null)" ]
-	then
-	cd ~/git
-	echo downloading IOPSYS repo
-	git clone git@public.inteno.se:iopsys iopsys
-	cd iopsys
-	git co devel
-	./iop setup_host
-	./iop bootstrap
+if [ -z "$(ls ~/git/iopsys 2>/dev/null)" ]; then
+	echo -n "download iopsys? [y]n: "
+	read ans
+	if [ "$ans" == "" -o "$ans" == "y" ]; then
+		cd ~/git
+		echo downloading IOPSYS repo
+		git clone git@public.inteno.se:iopsys iopsys
+		cd iopsys
+		git co devel
+		./iop setup_host
+		./iop bootstrap
+	fi
 fi
 
 if [ -a ./ssh_config ]
@@ -70,17 +80,27 @@ if [ -a ./ssh_config ]
 	cp ./ssh_config ~/.ssh/config
 fi
 
-sudo cp /etc/pam.d/login /etc/pam.d.login.no-oldschool-convenience
-sudo cp /etc/pam.d/passwd /etc/pam.d.passwd.no-oldschool-convenience
-echo -e	'auth     optional  pam_gnome_keyring.so\n'\
-'session  optional  pam_gnome_keyring.so auto_start' |
-	sudo tee -a /etc/pam.d/login > /dev/null
-echo 'password  optional  pam_gnome_keyring.so' |
-	sudo tee -a /etc/pam.d/passwd > /dev/null
-echo '
+loginfile="/etc/pam.d/login"
+if [ "$(cat $loginfile | grep 'pam_gnome_keyring')" == "" ]; then
+	sudo cp $loginfile /etc/pam.d.login.no-oldschool-convenience
+	echo -e	'auth     optional  pam_gnome_keyring.so\n'\
+	'session  optional  pam_gnome_keyring.so auto_start' |
+		sudo tee -a $loginfile > /dev/null
+fi
+
+passwdfile="/etc/pam.d/passwd"
+if [ "$(cat $passwdfile | grep 'pam_gnome_keyring')" == "" ]; then
+	sudo cp $passwdfile /etc/pam.d.passwd.no-oldschool-convenience
+	echo 'password  optional  pam_gnome_keyring.so' |
+		sudo tee -a $passwdfile > /dev/null
+fi
+
+if [ "$(cat ~/.profile | grep 'gnome-keyring-daemon')" == "" ]; then
+	echo '
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 	eval $(dbus-launch --sh-syntax --exit-with-session)
-	export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)
-fi' >> ~/.profile
+fi
+export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)' >> ~/.profile
+fi
 
 echo "done creating symlinks"
