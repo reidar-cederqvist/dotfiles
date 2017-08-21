@@ -27,7 +27,7 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-programsToInstall="curl conky gnome-keyring"
+programsToInstall="curl conky-all gnome-keyring"
 #install programs
 
 echo -n "install $programsToInstall? [y]n: "

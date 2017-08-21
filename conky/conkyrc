@@ -65,9 +65,10 @@ conky.config = {
 }
 
 conky.text = [[
-${scroll 16 $nodename - $sysname $kernel on $machine | }
+$nodename - $sysname $kernel on $machine
 $hr
 ${color white}Uptime:$color $uptime
+${color white}RAM Now: ${mem}
 ${color white}RAM Usage:
 ${memgraph 28,400 00ff00 ff0000 -t}
 ${color white}CPU Usage:
@@ -88,9 +89,11 @@ $hr
 ${if_running spotify}
 	${execi  1 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
 # --- Show wallpaper and cover ---
-	${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,460 -s 200x200 -n}
+	${if_existing /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg}
+${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,460 -s 200x200 -n}
+		${voffset 150}
+	${endif}
 # --- Show now playing information ---
-	${voffset 150}
 	${font Dejavu:size=12}Title:
 	${font GE Inspira:size=14}  ${exec ~/dotfiles/conky/conky-spotify/spotify.sh title}
 	${font Noto Sans:size=12}Artist:
