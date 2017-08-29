@@ -29,7 +29,7 @@ new_window none
 
 # show borders for certain programs
 for_window[class="Gnome-terminal"] border normal 0
-# for_window[class="Skype"] border normal 0
+# for_window[class="skypeforlinux"] border normal 0
 
 # browser pop-ups
 for_window [window_role="pop-up"] floting enable
@@ -113,7 +113,7 @@ set $workspace0 "10: skype"
 assign [class="^Google-chrome$"] → $workspace4
 
 ## asign skype to workspace 0
-assign [class="^Skype$"] → $workspace0
+assign [class="^skypeforlinux$"] → $workspace0
 
 ## asign spotify to workspace 9
 assign [class="^Spotify$"] → $workspace9
