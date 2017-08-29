@@ -24,6 +24,9 @@ get_title()
 }
 get_cover()
 {
+	if [ ! -d ~/dotfiles/conky/conky-spotify/current ]; then
+		mkdir -p ~/dotfiles/conky/conky-spotify/current
+	fi
 	id_current=$(cat ~/dotfiles/conky/conky-spotify/current/current.txt 2>/dev/null)
 	id_new=$(get_id)
 	cover=
