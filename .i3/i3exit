@@ -3,7 +3,13 @@ case "$1" in
     lock)
 		DIR="/home/reidar/.wallpapers/png"
 		PIC=$(ls $DIR/*.png | shuf -n 1)
-		i3lock -i $PIC -t
+		if [ "$(playerctl status)" == "Playing" ]; then
+			playerctl play-pause
+			i3lock -n -i $PIC -t
+			playerctl play-pause
+		else
+			i3lock -i $PIC -t
+		fi
         ;;
     logout)
         i3-msg exit
