@@ -8,7 +8,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/oldDotfiles             # old dotfiles backup directory
 # list of files/folders to symlink in homedir
-files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases"
+files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases Xresources"
 
 ########## /Variables
 
@@ -27,7 +27,7 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-programsToInstall="curl conky-all gnome-keyring"
+programsToInstall="curl conky-all gnome-keyring rofi"
 #install programs
 
 echo -n "install $programsToInstall? [y]n: "
