@@ -93,11 +93,11 @@ fi
 sett(){
 	echo -en "\033]0;$1\a"
 }
-makepkg(){
+#makepkg(){
 #	cd ~/iopsys
-	[ "$1" == "" ] && echo "Need argument" && return;
-	make $(find package -name $1)/compile V=s
-}
+#	[ "$1" == "" ] && echo "Need argument" && return;
+#	make $(find package -name $1)/compile V=s
+#}
 
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 
