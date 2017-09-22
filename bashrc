@@ -54,7 +54,7 @@ fi
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-repository_root="/home/reidar/.local/lib/python2.7/site-packages"
+repository_root="/usr/local/lib/python2.7/dist-packages"
 . ${repository_root}/powerline/bindings/bash/powerline.sh
 unset color_prompt force_color_prompt
 
