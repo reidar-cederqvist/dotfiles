@@ -193,7 +193,7 @@ bar {
 		background	$black
 
 		# Colors		border		backgr.		text
-		focused_workspace	$white		$white		$black
+		focused_workspace	#073642 	#073642		#f0f0fe
 		active_workspace	#073642		#073642 	#696f89
 		inactive_workspace	#073642 	#073642		$white
 		urgent_workspace	$orange		$orange		$dark
