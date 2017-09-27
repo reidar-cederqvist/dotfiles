@@ -1,1 +1,1 @@
-*/10 * * * * DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC
+*/10 * * * * DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR/*.jpg | shuf -n 1) && DISPLAY=:0 /usr/bin/feh --bg-fill $PIC

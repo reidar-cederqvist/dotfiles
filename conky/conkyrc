@@ -89,8 +89,8 @@ $hr
 ${if_running spotify}
 	${execi  1 ~/dotfiles/conky/conky-spotify/spotify.sh cover}
 # --- Show wallpaper and cover ---
-	${if_existing /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg}
-${image /home/reidar/dotfiles/conky/conky-spotify/current/current.jpg -p 0,460 -s 200x200 -n}
+	${if_existing $HOME/dotfiles/conky/conky-spotify/current/current.jpg}
+${image $HOME/dotfiles/conky/conky-spotify/current/current.jpg -p 0,460 -s 200x200 -n}
 		${voffset 150}
 	${endif}
 # --- Show now playing information ---

@@ -184,7 +184,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	tray_output primary
-	status_command i3blocks -c /home/reidar/dotfiles/.i3/i3blocks.conf
+	status_command i3blocks -c $HOME/dotfiles/.i3/i3blocks.conf
 	mode dock
 	font pango:DejaVu Sans Mono, Awesome 12
 	strip_workspace_numbers yes
@@ -221,8 +221,8 @@ focus_follows_mouse no
 
 exec --no-startup-id compton
 exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
-exec_always --no-startup-id /home/reidar/dotfiles/.i3/monitor_setup.sh
-exec_always --no-startup-id DIR="/home/reidar/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
+exec_always --no-startup-id $HOME/dotfiles/.i3/monitor_setup.sh
+exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
 # exec --no-startup-id export SSH_ASKPASS="/usr/bin/ssh-askpass";export DISPLAY=:0; ssh-ad
 
 
