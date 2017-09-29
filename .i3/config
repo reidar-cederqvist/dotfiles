@@ -11,14 +11,14 @@ floating_modifier $mod
 new_window none
 
 # show borders for certain programs
-for_window[class="Gnome-terminal"] border normal 0
-# for_window[class="skypeforlinux"] border normal 0
+for_window[class="Gnome-terminal"] border pixel 1
+for_window[class="Termite"] border pixel 1
 
 # browser pop-ups
 for_window [window_role="pop-up"] floting enable
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -95,12 +95,12 @@ set $workspace8 "8:  "
 set $workspace9 "9  spotify"
 set $workspace0 "10:  skype"
 
+## asign skype to workspace 0
+assign [class="skypeforlinux"] → $workspace0
+
 # force sertain windows to specific workspace
 ## asign google-chrome to workspace 4
-assign [class="^Google-chrome$"] → $workspace4
-
-## asign skype to workspace 0
-assign [class="^skypeforlinux$"] → $workspace0
+assign [window_role="^browser$"] → $workspace4
 
 ## asign spotify to workspace 9
 assign [class="^Spotify$"] → $workspace9
