@@ -7,7 +7,8 @@ allow_bold = true
 dynamic_title = true
 urgent_on_bell = true
 clickable_url = true
-font = Monospace 9
+font-0 = Monospace 10
+font-1 = FontAwesome 10
 scrollback_lines = -1
 search_wrap = true
 #icon_name = terminal
@@ -51,7 +52,7 @@ color1 = #0066ff
 # green
 color2 = #60b48a
 # purple
-color3 = #660066
+color3 = #c65dc6
 # red
 color4 = #ff3300
 # pink
