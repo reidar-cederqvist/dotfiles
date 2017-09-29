@@ -37,3 +37,4 @@ mkpkg(){
 	[ "`git remote -v 2>/dev/null | grep iopsys`" == "" ] && echo "no iopsys git" && return
 	make package/$1/compile ${@:2}
 }
+alias testserver='ssh god@10.0.104.10'
