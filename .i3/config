@@ -189,23 +189,25 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-# 	tray_output primary
-# 	status_command i3blocks -c $HOME/dotfiles/.i3/i3blocks.conf
-# 	mode dock
-# 	font pango:DejaVu Sans Mono, Awesome 12
-# 	strip_workspace_numbers yes
-# 	colors {
-# 		statusline	#999999
-# 		background	$black
+bar {
+	tray_output primary
+	status_command i3blocks -c $HOME/dotfiles/.i3/i3blocks.conf
+	mode dock
+	position top
+	font pango:DejaVu Sans Mono, Awesome 18
+	strip_workspace_numbers yes
+	colors {
+		statusline	#999999
+		background	$black
 
-# 		# Colors		border		backgr.		text
-# 		focused_workspace	#073642 	#073642		#f0f0fe
-# 		active_workspace	#073642		#073642 	#696f89
-# 		inactive_workspace	#073642 	#073642		$white
-# 		urgent_workspace	$orange		$orange		$dark
-# 	}
-# }
+		# Colors		border		backgr.		text
+		focused_workspace	#073642 	#073642		#f0f0fe
+		active_workspace	#073642		#073642 	#696f89
+		inactive_workspace	#073642 	#073642		$white
+		urgent_workspace	$orange		$orange		$dark
+	}
+}
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/dotfiles/.i3/volume inc #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id ~/dotfiles/.i3/volume dec #decrease sound volume
@@ -231,9 +233,6 @@ exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec --no-startup-id udiskie -t
 exec_always --no-startup-id $HOME/dotfiles/.i3/monitor_setup.sh
 exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
-exec --no-startup-id sleep 0.01; polybar main
-exec --no-startup-id sleep 0.01; polybar secondary
-# exec --no-startup-id export SSH_ASKPASS="/usr/bin/ssh-askpass";export DISPLAY=:0; ssh-ad
 
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
