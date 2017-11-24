@@ -93,10 +93,14 @@ set $workspace6 "6:  "
 set $workspace7 "7:  "
 set $workspace8 "8:  "
 set $workspace9 "9  spotify"
-set $workspace0 "10:  skype"
+set $workspace10 "10:  skype"
+set $workspace11 "11:  mail"
+
+## asign thunderbird to workspace 11
+assign [class="thunderbird"] → $workspace11
 
 ## asign skype to workspace 0
-assign [class="skypeforlinux"] → $workspace0
+assign [class="Skype"] → $workspace10
 
 # force sertain windows to specific workspace
 ## asign google-chrome to workspace 4
@@ -121,7 +125,8 @@ workspace $workspace6 output $display1
 workspace $workspace7 output $display1
 workspace $workspace8 output $display2
 workspace $workspace9 output $display2
-workspace $workspace0 output $display2
+workspace $workspace10 output $display2
+workspace $workspace11 output $display2
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -133,7 +138,8 @@ bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
-bindsym $mod+0 workspace $workspace0
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+plus workspace $workspace11
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -145,7 +151,8 @@ bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace0
+bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+plus move container to workspace $workspace11
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
