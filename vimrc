@@ -62,7 +62,7 @@ ino jj <Esc>
 vno v <esc>
 " Highlight lines over 80 chars
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%101v.\+/
+match OverLength /\%81v.\+/
 "enable syntax colors
 syntax on
 "insert ▸ + the rest spaces for tab and - for traling whitespaces

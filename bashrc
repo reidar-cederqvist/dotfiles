@@ -110,13 +110,10 @@ router(){
 	else
 		return;
 	fi
-	sudo ip l set enp5s0.400 down
-	sudo ip l set enp5s0.401 down
-	sudo ip l set enp5s0.402 down
-	sudo ip l set $vlan up
-	sudo dhclient $vlan
-	sudo dhclient enp5s0
-	echo -e "domain inteno.se\nsearch inteno.se\nnameserver 10.10.1.2\nnameserver 10.10.1.202" | sudo tee /etc/resolv.conf >/dev/null
+	sudo ifdown enp5s0.400 >/dev/null
+	sudo ifdown enp5s0.401 >/dev/null
+	sudo ifdown enp5s0.402 >/dev/null
+	sudo ifup $vlan >/dev/null
 }
 
 iopa(){
