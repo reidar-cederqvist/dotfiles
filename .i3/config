@@ -231,7 +231,7 @@ focus_follows_mouse no
 exec --no-startup-id compton
 exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec --no-startup-id udiskie -t
-exec /usr/bin/numlockx on
+exec --no-startup-id /usr/bin/numlockx on
 exec_always --no-startup-id $HOME/dotfiles/.i3/monitor_setup.sh
 exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
 
