@@ -27,7 +27,7 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-programsToInstall="curl conky-all gnome-keyring rofi playerctl"
+programsToInstall="curl conky-all gnome-keyring rofi"
 #install programs
 
 echo -n "install $programsToInstall? [y]n: "
@@ -53,6 +53,7 @@ if [ -z "$(ls ~/git/juci 2>/dev/null)" ]; then
 	read ans
 	if [ "$ans" == "" -o "$ans" == "y" ]; then
 		echo downloading JUCI repo
+		mkdir ~/git
 		cd ~/git
 		git clone git@public.inteno.se:juci juci
 		cd ~/git/juci
@@ -103,4 +104,7 @@ fi
 export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)' >> ~/.profile
 fi
 
+if ! grep 'nodeadkeys' $HOME/.profile; then
+	echo "setxkbmap -layout se -variant nodeadkeys" >> $HOME/.profile
+fi
 echo "done creating symlinks"
