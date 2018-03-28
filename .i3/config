@@ -18,7 +18,7 @@ for_window[class="Termite"] border pixel 1
 for_window [window_role="pop-up"] floting enable
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec termite -c ~/.config/termite/config
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -229,6 +229,8 @@ bindsym XF86AudioPrev exec playerctl previous
 focus_follows_mouse no
 
 exec --no-startup-id compton
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
 exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec --no-startup-id udiskie -t
 exec --no-startup-id /usr/bin/numlockx on
