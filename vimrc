@@ -18,6 +18,7 @@ Plugin 'christoomey/vim-system-copy'
 " Plugin 'valloric/youcompleteme'
 " Plugin 'SirVer/ultisnips'
 Plugin 'scrooloose/nerdtree'
+Plugin 'chrisbra/Colorizer'
 " Plugin 'easymotion/vim-easymotion'
 " Plugin 'Lokaltog/vim-powerline'
 " plugin from http://vim-scripts.org/vim/scripts.html
