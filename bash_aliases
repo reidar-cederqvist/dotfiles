@@ -1,6 +1,7 @@
 #!/bin/bash
 #~/.bash_aliases
 
+alias sshgw='ssh root@192.168.1.1'
 alias iopf='./iop feeds_update'
 alias iopu='./iop update_package'
 alias iopg='./iop genconfig'
@@ -21,7 +22,7 @@ alias eb='vim ~/.bashrc'
 alias eba='vim ~/.bash_aliases'
 alias ei='vim ~/.config/i3/config'
 alias et='vim ~/.config/termite/config'
-alias send-img='scp bin/*/*.y2 root@routerlogin.net:/tmp/'
+alias ssys='./iop ssh_sysupgrade_latest'
 alias buildserver="ssh 10.10.1.31"
 alias jenkins3="ssh inteno@10.10.1.17"
 alias jenkins2="ssh inteno@10.10.1.31"
@@ -29,7 +30,7 @@ alias jenkins="ssh inteno@10.10.1.14"
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format-local:%y%m%d-%H%M"
+alias gl="git log --tags --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format-local:%y%m%d-%H%M"
 alias gl1="git log -1 | awk '/^commit/ {print \$2}'"
 alias sshs="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 admin@10.10.1.181"
 mkpkg(){
@@ -37,3 +38,7 @@ mkpkg(){
 	make package/$1/compile ${@:2}
 }
 alias testserver='ssh god@10.0.104.10'
+iopa(){
+	[ "$1" == "" ] && echo "usage: iopa <board>" && return 1
+	iopf && iopg -c $1 DEV && mp
+}
