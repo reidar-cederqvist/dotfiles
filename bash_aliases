@@ -40,5 +40,7 @@ mkpkg(){
 alias testserver='ssh god@10.0.104.10'
 iopa(){
 	[ "$1" == "" ] && echo "usage: iopa <board>" && return 1
-	iopf && iopg -c $1 DEV && mp
+	iopf
+	iopg -c $1 DEV
+	mp
 }
