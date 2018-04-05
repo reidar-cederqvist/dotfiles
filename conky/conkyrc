@@ -41,7 +41,7 @@ conky.config = {
     use_xft = true,
     font = 'DejaVu Sans Mono:size=12',
     gap_x = 4000,
-    gap_y = 100,
+    gap_y = 400,
     minimum_height = 5,
 	minimum_width = 5,
 	maximum_width = 420,
