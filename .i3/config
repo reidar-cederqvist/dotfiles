@@ -36,7 +36,7 @@ set $orange	#E59847
 set $cyan	#2AA198
 set $dark	#00252E
 
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -theme /usr/share/rofi/themes/material.rasi
 
 
 # change focus
