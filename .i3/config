@@ -112,8 +112,8 @@ assign [class="^Spotify$"] → $workspace9
 for_window [class="Spotify"] move to workspace $workspace9
 
 # -- end of assigning window to workspace
-set $display1 DP-1-1
-set $display2 eDP-1-1
+set $display1 DisplayPort-0
+set $display2 HDMI-0
 
 #set workspace 8, 9 and 10 on laptop-screen and the rest on big screen
 workspace $workspace1 output $display1
@@ -228,6 +228,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
+exec_always $HOME/dotfiles/.i3/monitor_setup.sh
 exec --no-startup-id compton
 exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
@@ -236,8 +237,7 @@ exec --no-startup-id udiskie -t
 exec --no-startup-id /usr/bin/numlockx on
 #exec --no-startup-id /usr/bin/indicator-sound-switcher
 exec --no-startup-id /usr/bin/pasystray
-exec_always --no-startup-id $HOME/dotfiles/.i3/monitor_setup.sh
-exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
+exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && sleep 0.1 && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
 
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
