@@ -228,16 +228,14 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always $HOME/dotfiles/.i3/monitor_setup.sh
+exec_always sh $HOME/.fehbg
 exec --no-startup-id compton
-exec --no-startup-id dropbox start
-exec --no-startup-id nm-applet
+exec dropbox start
 exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec --no-startup-id udiskie -t
-exec --no-startup-id /usr/bin/numlockx on
-#exec --no-startup-id /usr/bin/indicator-sound-switcher
+exec /usr/bin/numlockx on
 exec --no-startup-id /usr/bin/pasystray
-exec_always --no-startup-id DIR="$HOME/.wallpapers/" && PIC=$(ls $DIR | shuf -n 1) && sleep 0.1 && DISPLAY=:0;/usr/bin/feh --bg-fill $DIR$PIC
+
 
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown

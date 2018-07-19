@@ -8,7 +8,7 @@
 dir=~/dotfiles                    # dotfiles directory
 olddir=~/oldDotfiles             # old dotfiles backup directory
 # list of files/folders to symlink in homedir
-files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases Xresources"
+files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases Xresources fehbg"
 
 ########## /Variables
 
@@ -27,13 +27,22 @@ for file in $files; do
     ln -s $dir/$file ~/.$file
 done
 
-programsToInstall="curl conky-all gnome-keyring rofi pasystray feh udiskie network-manager-gnome numlockx"
 #install programs
+programsToInstall="vim lightdm lightdm-gtk-greeter i3 i3-wm i3blocks i3lock curl conky-all gnome-keyring rofi pasystray feh udiskie network-manager-gnome numlockx"
+needed=""
 
-echo -n "install $programsToInstall? [y]n: "
-read ans
-if [ "$ans" == "" -o "$ans" == "y" ]; then
-	sudo apt-get install -yqq $programsToInstall
+for pkg in $programsToInstall; do
+	if ! dpkg -s $pkg >/dev/null 2>/dev/null
+	then
+		needed="$needed $pkg"
+	fi
+done
+if [ -n "$needed" ]; then
+	echo -n "install [ $needed ]? [y]n: "
+	read ans
+	if [ "$ans" == "" -o "$ans" == "y" ]; then
+		sudo apt-get install -yqq $programsToInstall
+	fi
 fi
 
 if [ -z "$(ls ~/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
@@ -104,7 +113,12 @@ fi
 export $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gnupg)' >> ~/.profile
 fi
 
-if ! grep 'nodeadkeys' $HOME/.profile; then
+if ! grep -q 'nodeadkeys' $HOME/.profile; then
 	echo "setxkbmap -layout se -variant nodeadkeys" >> $HOME/.profile
 fi
-echo "done creating symlinks"
+
+if [ -d "/etc/lightdm/" ]; then
+	cd $dir
+	sudo cp lightdm.conf /etc/lightdm/lightdm.conf
+fi
+echo "done setting up i3"
