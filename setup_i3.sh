@@ -28,7 +28,25 @@ for file in $files; do
 done
 
 #install programs
-programsToInstall="vim lightdm lightdm-gtk-greeter i3 i3-wm i3blocks i3lock curl conky-all gnome-keyring rofi pasystray feh udiskie network-manager-gnome numlockx"
+programsToInstall="
+vim
+lightdm
+lightdm-gtk-greeter
+i3
+i3-wm
+i3blocks
+i3lock
+curl
+conky-all
+gnome-keyring
+rofi
+pasystray
+feh
+udiskie
+network-manager-gnome
+numlockx
+pasystray"
+
 needed=""
 
 for pkg in $programsToInstall; do
