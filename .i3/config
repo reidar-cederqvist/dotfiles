@@ -112,8 +112,8 @@ assign [class="^Spotify$"] → $workspace9
 for_window [class="Spotify"] move to workspace $workspace9
 
 # -- end of assigning window to workspace
-set $display1 DisplayPort-0
-set $display2 HDMI-0
+set $display1 DP-2
+set $display2 HDMI-1
 
 #set workspace 8, 9 and 10 on laptop-screen and the rest on big screen
 workspace $workspace1 output $display1
