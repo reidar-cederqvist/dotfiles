@@ -62,8 +62,7 @@ let mapleader = " "
 ino jj <Esc>
 vno v <esc>
 " Highlight lines over 80 chars
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+:au BufWinEnter *.c,*.h let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 "enable syntax colors
 syntax on
 "insert ▸ + the rest spaces for tab and - for traling whitespaces
