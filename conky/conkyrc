@@ -74,7 +74,7 @@ ${memgraph 28,400 00ff00 ff0000 -t}
 ${color white}CPU Usage:
 ${cpugraph 28,400 00ff00 ff0000 -t}
 ${color white}Net Usage:
-${downspeedgraph enp5s0 28,400 00ff00 ff0000 -t}
+${downspeedgraph enp24s0 28,400 00ff00 ff0000 -t}
 $hr
 ${color white}Name              PID   CPU%   MEM%
 ${color white} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
