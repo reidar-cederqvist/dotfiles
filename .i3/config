@@ -90,7 +90,7 @@ set $workspace3 "3:  Routers"
 set $workspace4 "4:  Browser"
 set $workspace5 "5:  webserver"
 set $workspace6 "6:  "
-set $workspace7 "7:  "
+set $workspace7 "7:  Open"
 set $workspace8 "8:  "
 set $workspace9 "9  spotify"
 set $workspace10 "10:  skype"
@@ -228,12 +228,12 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always sh $HOME/.fehbg
+exec_always --no-startup-id sh $HOME/dotfiles/.i3/monitor_setup.sh && sh $HOME/.fehbg
 exec --no-startup-id compton
-exec dropbox start
+exec --no-startup-id dropbox start
 exec --no-startup-id conky -c ~/dotfiles/conky/conkyrc
 exec --no-startup-id udiskie -t
-exec /usr/bin/numlockx on
+exec --no-startup-id /usr/bin/numlockx on
 exec --no-startup-id /usr/bin/pasystray
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (Shift+s) shutdown
