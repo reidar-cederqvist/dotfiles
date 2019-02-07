@@ -92,12 +92,13 @@ set $workspace5 "5:  webserver"
 set $workspace6 "6:  "
 set $workspace7 "7:  Open"
 set $workspace8 "8:  "
-set $workspace9 "9  spotify"
+set $workspace9 "9  music"
 set $workspace10 "10:  skype"
-set $workspace11 "11:  mail"
+set $workspace11 "11:  slack"
 
 ## asign thunderbird to workspace 11
-assign [class="thunderbird"] → $workspace11
+assign [class="Slack*"] → $workspace11
+for_window [class="Slack*"] move to workspace $workspace11
 
 ## asign skype to workspace 0
 assign [class="Skype"] → $workspace10
@@ -106,10 +107,12 @@ assign [class="Skype"] → $workspace10
 ## asign google-chrome to workspace 4
 assign [window_role="^browser$"] → $workspace4
 
-## asign spotify to workspace 9
+## asign spotify and google music to workspace 9
 assign [class="^Spotify$"] → $workspace9
+assign [class="^Google Play Music Desktop Player$"] → $workspace9
 ## because the class is not working due to bug in spotify software
 for_window [class="Spotify"] move to workspace $workspace9
+for_window [class="Google Play Music Desktop Player"] move to workspace $workspace9
 
 # -- end of assigning window to workspace
 set $display1 DP-1-1
