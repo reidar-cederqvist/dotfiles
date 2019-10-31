@@ -4,3 +4,12 @@ Host 192.168.*.*
 Host routerlogin.net
 	StrictHostKeyChecking no
 	UserKnownHostsFile=/dev/null
+
+Host gerrit*
+	User reidar.cederqvist
+	StrictHostKeyChecking no
+	UserKnownHostsFile=/dev/null
+
+Host dev.iopsys.eu
+	StrictHostKeyChecking no
+	UserKnownHostsFile=/dev/null

@@ -5,8 +5,9 @@
 
 ########## Variables
 
-dir=~/dotfiles                    # dotfiles directory
-olddir=~/oldDotfiles             # old dotfiles backup directory
+dir=~/dotfiles			# dotfiles directory
+olddir=~/oldDotfiles		# old dotfiles backup directory
+
 # list of files/folders to symlink in homedir
 files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases Xresources fehbg"
 
@@ -15,17 +16,27 @@ files="bashrc vimrc prompt_colors.sh gitconfig bash_aliases Xresources fehbg"
 # create dotfiles_old in homedir
 mkdir -p $olddir
 
-# change to the dotfiles directory
 cd $dir
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks 
 for file in $files; do
 	if [ -a ~/.$file ]
 		then
-    	mv ~/.$file $olddir/ >/dev/null
+		mv ~/.$file $olddir/ >/dev/null
 	fi
-    ln -s $dir/$file ~/.$file
+	ln -s $dir/$file ~/.$file
 done
+
+files="setup.sh"
+for file in $files; do
+	[ -a ./$file ] || continue
+	if [ -a ~/$file ]
+		then
+		mv ~/$file $olddir/ >/dev/null
+	fi
+	ln -s $dir/$file ~/$file
+done
+
 
 #install programs
 programsToInstall="
@@ -36,6 +47,7 @@ i3
 i3-wm
 i3blocks
 i3lock
+compton
 curl
 conky-all
 gnome-keyring

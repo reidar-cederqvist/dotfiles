@@ -7,7 +7,7 @@ alias iopu='./iop update_package'
 alias iopg='./iop genconfig'
 alias iopb='./iop bootstrap'
 alias iops='./iop ssh_sysupgrade_latest 192.168.1.1'
-alias mp='rm -rf bin/* && make -j9'
+alias mp='rm -rf bin/* && make -j$(nproc)'
 alias mj='make package/feeds/feed_inteno_juci/juci/compile'
 alias mjp='make package/feeds/feed_inteno_juci/juci/compile -j9'
 alias reboot='systemctl reboot'
@@ -33,6 +33,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias gl="git log --tags --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format-local:%y%m%d-%H%M"
 alias gl1="git log -1 | awk '/^commit/ {print \$2}'"
 alias sshs="ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 admin@10.10.1.181"
+alias rmo='for o in $(git remote); do if [ "$o" != "origin" ]; then git remote remove $o; fi; done'
 mkpkg(){
 	[ "`git remote -v 2>/dev/null | grep iopsys`" == "" ] && echo "no iopsys git" && return
 	make package/$1/compile ${@:2}
@@ -44,3 +45,4 @@ iopa(){
 	iopg -c $1 DEV
 	mp
 }
+alias setup="/home/reidar/setup.sh"
