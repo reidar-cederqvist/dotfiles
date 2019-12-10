@@ -2,6 +2,15 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+SSH_AGENT_FILE="/home_root/reidar/.ssh_agent.run"
+if [ -f "$SSH_AGENT_FILE" -a "$(pidof ssh-agent)" != "" ]; then
+	eval $(cat $SSH_AGENT_FILE)
+else
+	killall -9 ssh-agent
+	echo "$(ssh-agent)" > $SSH_AGENT_FILE
+	eval $(cat $SSH_AGENT_FILE)
+fi
+
 . ~/.prompt_colors.sh
 export TERM=xterm
 
@@ -53,11 +62,11 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-repository_root="$HOME/.local/lib/python2.7/site-packages"
-. ${repository_root}/powerline/bindings/bash/powerline.sh
+# powerline-daemon -q
+# POWERLINE_BASH_CONTINUATION=1
+# POWERLINE_BASH_SELECT=1
+# repository_root="$HOME/.local/lib/python2.7/site-packages"
+# . ${repository_root}/powerline/bindings/bash/powerline.sh
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
