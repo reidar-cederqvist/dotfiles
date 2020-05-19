@@ -35,6 +35,7 @@ install_config_folders(){
 
 	# create $olddir in homedir
 	mkdir -p $olddir
+	mkdir -p $confdir
 
 	folders=$(ls $dir)
 
