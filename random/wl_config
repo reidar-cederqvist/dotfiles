@@ -1,0 +1,19 @@
+#!/bin/sh
+
+if [ $# -ne 3 ]; then
+	echo "usage: $0 <device> <ssid> <key>"
+	exit 99
+fi
+
+SSID="$1"
+KEY="$2"
+DEV="$3"
+FILE=/tmp/wpa.conf
+wpa_passphrase "$SSID" "$KEY" > $FILE
+sudo killall -9 wpa_supplicant
+sudo wpa_supplicant -B -i $DEV -c $FILE &>/dev/null
+sleep 5
+sudo dhclient -r $DEV
+sudo dhclient $DEV
+
+rm -rf $FILE

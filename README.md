@@ -1,8 +1,8 @@
 # dotfiles
 My configuration files/scripts for everyting from I3 to vim and bash
 
-### setup_i3.sh
-Sets up i3 by linking configuration files and downloading neccesary applications.
+## Layout
+config: files/folders that should go under .config
+home: dotfiles that should go in your home directory (note without the leading dot character)
+random: stuff that might be usefull in the future
 
-### termite, .i3 folders
-These folders needs to be linked separately.

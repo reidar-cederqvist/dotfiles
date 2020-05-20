@@ -53,11 +53,11 @@ if [ -n "$force_color_prompt" ]; then
 	fi
 fi
 
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-repository_root="$HOME/.local/lib/python2.7/site-packages"
-. ${repository_root}/powerline/bindings/bash/powerline.sh
+#powerline-daemon -q
+#POWERLINE_BASH_CONTINUATION=1
+#POWERLINE_BASH_SELECT=1
+#repository_root="$HOME/.local/lib/python2.7/site-packages"
+#. ${repository_root}/powerline/bindings/bash/powerline.sh
 unset color_prompt force_color_prompt
 
 # enable color support of ls and also add handy aliases
@@ -89,6 +89,8 @@ if ! shopt -oq posix; then
 		. /etc/bash_completion
 	fi
 fi
+
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
 # some functions for stuff that is to advanced for alias
 
