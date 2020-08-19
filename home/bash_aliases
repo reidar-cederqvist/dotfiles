@@ -47,4 +47,14 @@ iopa(){
 	iopg -c $1 DEV
 	mp
 }
-alias setup="$HOME/setup.sh"
+setup(){
+	if dir="$(git rev-parse --git-dir 2>/dev/null)"; then
+		git_home=${dir%%.git}
+		git_home=${git_home:-.}
+		pushd $git_home
+		$HOME/gerrit-setup.sh
+		popd >/dev/null
+	else
+		echo "Not a git directory"
+	fi
+}

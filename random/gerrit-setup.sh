@@ -7,16 +7,15 @@
 usage() {
     echo
     echo "Usage:"
-    echo " $0 [--keep-origin] [--gerrit [<user>@]<host>] [<repository>]"
+    echo " $0 [--keep-origin] [--gerrit <host>] [<repository>]"
     echo
     echo "<host> = location of gerrit"
-    echo "<user>@<host> = username for gerrit and location of gerrit"
     echo "Only needed once, or when changing gerrit hosts"
     echo
     echo "<repository> = repository (e.g. drgboot, drgos)"
     echo "(if <repository> is not specified it will be taken from the origin url)"
     echo
-    echo "This script will setup some things useful for interracting"
+    echo "This script will setup some things useful for interacting"
     echo "with the Genexis gerrit (code review) server:"
     echo "  * commit hook to add Change-Id"
     echo "  * git remote config for convenient push to gerrit"
@@ -24,8 +23,8 @@ usage() {
     echo "It should be executed from the the top directory of the "
     echo "cloned git repository."
     echo
-    echo "The current remote.gerrit.url is used if available, including"
-    echo "any username, but this can be overridden by the --gerrit option"
+    echo "The current remote.gerrit.url is used if available,"
+    echo "but this can be overridden by the --gerrit option"
     echo
     echo "The origin url will also be rewritten to use the gerrit url,"
     echo "unless the --keep-origin option was given."
@@ -37,14 +36,6 @@ usage() {
     echo
     echo "   gerrit-setup.sh drgos.git"
     echo "        Uses default server, and uses 'drgos.git' as repository name"
-    echo
-    echo "   gerrit-setup.sh --gerrit user1@se-gerrit"
-    echo "        Uses 'user1' for access, on server 'se-gerrit'"
-    echo
-    echo "   gerrit-setup.sh --keep-origin --gerrit user1@gerrit.genexislocal.nl"
-    echo "        Doesn't change the origin url. The username for gerrit can be"
-    echo "        different from the one in origin."
-    echo "        This may be useful for using replicated repositories."
     echo
     exit 1
 }
@@ -81,11 +72,8 @@ else
 fi
 
 if echo $gerrit | grep -q '@'; then
-    gerrituser=$(echo $gerrit | sed -n 's/^\(.*\)@.*$/\1/p')
-    echo "Found user ${gerrituser}"
-else
-    gerrituser=reidar.cederqvist
-    echo "USER is ${gerrituser}"
+    echo "error: Usernames are deprecated. Use ~/.ssh/config to translate user names"
+    exit 1
 fi
 
 repo=$1
@@ -99,10 +87,10 @@ fi
 # Get repo (drgboot, mcos, drgos, etc.)
 if [ -z "$repo" ]; then
     url=$(git config --get remote.origin.url)
-    url2=${url%%/}
-    repo=${url2##*/}
-    # strip the .git extension
-    repo=$(basename $repo .git)
+    repo=${url%%/}  # strip trailing slash if any
+    repo=${repo#*://}  # strip protocol
+    repo=${repo#*/}  # strip host and port, leaving the path and repo
+    repo=${repo%.git}  # strip the .git extension
 fi
 [ -n "$repo" ] || {
     echo "Failed to figure out repository name"
@@ -143,8 +131,8 @@ fi
 
 # Add latest commit template
 # Note that the URL stays the same in case the template on Plaza is updated by "Action-> Attach new Version"
-echo "Checking for commit message template, needs password to access Plaza"
-wget --no-check-certificate --user=${gerrituser} --ask-password -nv -O .git/info/commit_template.txt https://plaza.genexislocal.nl/@api/deki/files/552/=commit_template.txt  &&  git config commit.template ${PWD}/.git/info/commit_template.txt
+# echo "Checking for commit message template, needs password to access Plaza"
+# wget --no-check-certificate --user=${USER} --ask-password -nv -O .git/info/commit_template.txt https://plaza.genexislocal.nl/@api/deki/files/552/=commit_template.txt  &&  git config commit.template ${PWD}/.git/info/commit_template.txt
 
 # Set origin URL
 origin="ssh://${gerrit}:${port}/${repo}"
@@ -191,37 +179,25 @@ git fetch gerrit
 # Add special "for-" remotes for all branches
 git branch -r | grep " gerrit/" | (
     while read br; do
-	b="${br##gerrit/}"
-	bs=$b
-	[ "HEAD" != $b ] || continue
+        b="${br##gerrit/}"
+        bs=$b
+        [ "HEAD" != $b ] || continue
 
-	if ! grep -q "remote \"for-$bs\"" $GC; then
+        if ! grep -q "remote \"for-$bs\"" $GC; then
             echo "Adding remote 'for-$bs'"
             (
                 cat <<EOF
 [remote "for-$bs"]
 	url = ssh://${gerrit}:${port}/${repo}
 	push = HEAD:refs/for/$b
+	skipDefaultUpdate = true
 EOF
             ) >> $GC
         fi
-
-        if ! grep -q "remote \"drafts-$bs\"" $GC; then
-            echo "Adding remote 'drafts-$bs'"
-            (
-                cat <<EOF
-[remote "drafts-$bs"]
-        url = ssh://${gerrit}:${port}/${repo}
-        push = HEAD:refs/drafts/$b
-EOF
-            ) >> $GC
-        fi
-
     done
 )
 
 ### Process the submodules -- currently drgos only -- untested, may not work
 ##echo "Processing submodules ..."
 ##git submodule foreach "(cd ..; git config submodule.\$name.url ssh://${gerrit}:${port}/\$(basename \$name))"
-
 
