@@ -16,3 +16,5 @@
 	smtpServer = smtp.gmail.com
 	smtpUser = reidar.cederqvist@gmail.com
 	smtpServerPort = 587
+[pull]
+	ff = only
