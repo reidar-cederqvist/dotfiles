@@ -3,13 +3,11 @@
 # for examples
 
 SSH_AGENT_FILE="$HOME/.ssh_agent.run"
-if [ -f "$SSH_AGENT_FILE" -a "$(pidof ssh-agent)" != "" ]; then
-	eval $(cat $SSH_AGENT_FILE)
-else
+if [ ! -f "$SSH_AGENT_FILE" -o "$(pidof ssh-agent)" == "" ]; then
 	killall -9 ssh-agent
 	echo "$(ssh-agent)" > $SSH_AGENT_FILE
-	eval $(cat $SSH_AGENT_FILE)
 fi
+eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
 
 . ~/.prompt_colors.sh
 export TERM=xterm
