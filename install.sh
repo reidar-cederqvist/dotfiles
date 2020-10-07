@@ -103,17 +103,13 @@ pasystray"
 	fi
 }
 
-install_vundle(){
-
-	if [ -z "$(ls $HOME/.vim/bundle/Vundle.vim 2>/dev/null)" ]; then
-		echo -n "install Vundle? [y]n: "
-		read ans
-		if [ "$ans" == "" -o "$ans" == "y" ]; then
-			#download vundle
-			echo installing Vundle
-			mkdir -p $HOME/.vim/bundle/
-			git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-		fi
+install_vim-plug(){
+	echo -n "install Vim-plug? [y]n: "
+	read ans
+	if [ "$ans" == "" -o "$ans" == "y" ]; then
+		#download vim-plug
+		echo installing Vim-plug
+		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
 }
 
@@ -134,7 +130,7 @@ usage(){
 	echo -e "$0 [action]"
 	echo -e "actions:"
 	echo -e "\tconfigure\t\tCopy config files and set keymap"
-	echo -e "\tvundle\t\tInstall Vuldle"
+	echo -e "\tplug\t\tInstall Vim-plug"
 	echo -e "\tinstall\t\tInstall some usefull programs"
 }
 
@@ -155,8 +151,8 @@ main(){
 			install_config_files
 			install_config_folders
 		;;
-		vundle|v)
-			install_vundle
+		plug|p)
+			install_vim-plug
 		;;
 		install|inst)
 			install_programs
