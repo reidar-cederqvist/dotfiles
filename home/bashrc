@@ -99,18 +99,9 @@ fi
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-# some functions for stuff that is to advanced for alias
-
-sett(){
-	echo -en "\033]0;$1\a"
-}
-#makepkg(){
-#	cd ~/iopsys
-#	[ "$1" == "" ] && echo "Need argument" && return;
-#	make $(find package -name $1)/compile V=s
-#}
-
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
+
+# some functions for stuff that is to advanced for alias
 
 router(){
 	if [ "$1" == "1" ]; then vlan="enp5s0.400";

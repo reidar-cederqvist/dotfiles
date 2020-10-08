@@ -122,7 +122,11 @@ install_ssh_config(){
 
 set_keymap(){
 	if ! grep -q 'nodeadkeys' $HOME/.profile; then
-		echo "setxkbmap -layout se -variant nodeadkeys" >> $HOME/.profile
+		cat <<EOF >> $HOME/.profile
+if [ "\$DISPLAY" ]; then
+	setxkbmap -layout se -variant nodeadkeys
+fi
+EOF
 	fi
 }
 
