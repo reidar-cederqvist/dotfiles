@@ -4,7 +4,7 @@
 
 SSH_AGENT_FILE="$HOME/.ssh_agent.run"
 if [ ! -f "$SSH_AGENT_FILE" -o "$(pidof ssh-agent)" == "" ]; then
-	killall -9 ssh-agent
+	killall -9 ssh-agent 2>/dev/null
 	echo "$(ssh-agent)" > $SSH_AGENT_FILE
 fi
 eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
