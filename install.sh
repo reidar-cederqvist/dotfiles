@@ -104,13 +104,9 @@ pasystray"
 }
 
 install_vim-plug(){
-	echo -n "install Vim-plug? [y]n: "
-	read ans
-	if [ "$ans" == "" -o "$ans" == "y" ]; then
-		#download vim-plug
-		echo installing Vim-plug
-		curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	fi
+	#download vim-plug
+	echo installing Vim-plug
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 }
 
 install_ssh_config(){
