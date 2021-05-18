@@ -16,7 +16,10 @@ install_config_files(){
 
 	# backup existing config files in homedir to $olddir directory, then create symlinks 
 	for file in $files; do
-		target="$HOME/.$file"
+		target="$HOME/$file"
+		if [ "${file:0:4}" == "dot_" ]; then
+			target="$HOME/.${file:4}"
+		fi
 		[ -h "$target" -a -e "$target" ] && continue		# symlink exist and works
 		[ -h "$target" ] && rm -rf "$target"			# symlink is broken
 		if [ -a "$target" ]
