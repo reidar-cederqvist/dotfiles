@@ -132,9 +132,9 @@ EOF
 usage(){
 	echo -e "$0 [action]"
 	echo -e "actions:"
-	echo -e "\tconfigure\t\tCopy config files and set keymap"
-	echo -e "\tplug\t\tInstall Vim-plug"
-	echo -e "\tinstall\t\tInstall some usefull programs"
+	echo -e "\tc\tconfigure\tCopy config files and set keymap"
+	echo -e "\tp\tplug\t\tInstall Vim-plug"
+	echo -e "\ti\tinstall\t\tInstall some usefull programs"
 }
 
 main(){
@@ -148,7 +148,7 @@ main(){
 			usage
 			exit 0
 		;;
-		configure|conf)
+		configure|conf|c)
 			set_keymap
 			install_ssh_config
 			install_config_files
@@ -157,7 +157,7 @@ main(){
 		plug|p)
 			install_vim-plug
 		;;
-		install|inst)
+		install|inst|i)
 			install_programs
 		;;
 		*)
