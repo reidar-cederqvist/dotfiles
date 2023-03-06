@@ -1,0 +1,41 @@
+volume=$(pactl get-sink-volume @DEFAULT_SINK@ | grep -o '[0-9]*%' | head -1)
+mute=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
+function getVolume(){
+	if [ "$mute" == "no" ]; then
+		if [ $(echo $volume | sed 's/%//g') -lt 50 ]; then
+			echo    $volume
+			echo $volume | cut -c1-5
+		else
+			echo    $volume
+			echo $volume | cut -c1-5
+		fi
+		echo "#a64dff"
+	fi
+	if [ "$mute" == "yes" ]; then
+		echo  MUTED
+		echo  0%
+		echo "#1a8cff"
+	fi
+}
+function volumePlus(){
+	[ $(echo $volume | sed 's/%//') -lt 100 ] && pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -RTMIN+1 i3blocks;
+}
+function volumeMinus(){
+	[ $(echo $volume | sed 's/%//') -gt 0 ] && pactl set-sink-volume @DEFAULT_SINK@ -5%; pkill -RTMIN+1 i3blocks;
+}
+function muteToggle(){
+	pactl set-sink-mute @DEFAULT_SINK@ toggle && pactl set-sink-volume @DEFAULT_SINK@ +5%; pkill -RTMIN+1 i3blocks;
+}
+case "$1" in 
+	"get")
+		getVolume
+	;;
+	"inc")
+		volumePlus
+	;;
+	"dec")
+		volumeMinus
+	;;
+	"mute")
+		muteToggle
+esac

@@ -1,0 +1,22 @@
+[user]
+	email = reidar.cederqvist@gmail.com
+	name = Reidar Cederqvist
+[push]
+	default = simple
+[core]
+	editor = vim
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = reidar.cederqvist@gmail.com
+	smtpServerPort = 587
+[pull]
+	ff = only
+[init]
+	defaultBranch = main

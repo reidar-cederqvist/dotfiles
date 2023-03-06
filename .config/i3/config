@@ -1,0 +1,270 @@
+# i3 config file (v4)
+
+set $mod Mod4
+
+font pango:DejaVu Sans Mono, Awesome 14
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# hide titlebar
+default_border pixel 3
+
+
+# set minor gap between windows
+gaps inner 5
+
+# browser pop-ups
+for_window [window_role="pop-up"] floting enable
+
+for_window [class="Yad"] floating enable
+
+# Steam related rules
+for_window [class="^Steam$"] floating enable
+for_window [class="^Steam$" title="^Steam$"] floating disable
+
+for_window [class="^7dLauncher.x86_64$"] floating enable
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# Hybrid colors
+set $black	#002B36
+set $white	#839496
+set $gray	#CCCCCC
+set $darkgray	#666666
+set $green 	#799F26
+set $blue	#4D73AA
+set $purple	#8473A7
+set $red	#B58900
+set $orange	#E59847
+set $cyan	#2AA198
+set $dark	#00252E
+
+bindsym $mod+d exec i3-dmenu-desktop -dmenu="rofi -dmenu -i"
+bindsym $mod+Shift+s exec flameshot gui
+bindsym $mod+b exec xdg-open https://
+
+bindsym $mod+q exec grep '^bindsym' .config/i3/config | sed 's/bindsym //' | yad --text-info --no-buttons --close-on-unfocus --fullscreen --margins=10 --back=#002b36 --fore=#fff
+
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+c split h
+
+for_window [class="floating"] floating enable
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
+# bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+#class			border	backgr.	text	indicator
+client.focused		$white	$white	$dark	$dark
+client.unfocused	$dark	$dark	$white	$white
+client.focused_inactive	$dark	$dark	$white	$dark
+client.urgent		$orange $orange $dark	$white
+
+# Name the workspaces. the number is to make them appear in order
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+set $workspace11 "11"
+
+
+set $display1 DP-2
+set $display2 HDMI-1
+
+#set workspace 8, 9 and 10 on laptop-screen and the rest on big screen
+workspace $workspace1 output $display1
+workspace $workspace2 output $display1
+workspace $workspace3 output $display1
+workspace $workspace4 output $display1
+workspace $workspace5 output $display1
+workspace $workspace6 output $display1
+workspace $workspace7 output $display1
+workspace $workspace8 output $display2
+workspace $workspace9 output $display2
+workspace $workspace10 output $display2
+workspace $workspace11 output $display2
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+bindsym $mod+plus workspace $workspace11
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+plus move container to workspace $workspace11
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	# These bindings trigger as soon as you enter the resize mode
+
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym h resize shrink width 5 px or 10 ppt
+	bindsym j resize grow height 5 px or 10 ppt
+	bindsym k resize shrink height 5 px or 10 ppt
+	bindsym l resize grow width 5 px or 10 ppt
+
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 5 px or 10 ppt
+	bindsym Down resize grow height 5 px or 10 ppt
+	bindsym Up resize shrink height 5 px or 10 ppt
+	bindsym Right resize grow width 5 px or 10 ppt
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	tray_output primary
+	output $display1
+	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
+	mode dock
+	position top
+	font pango:DejaVu Sans Mono, Awesome 18
+	strip_workspace_numbers no
+	colors {
+		statusline	#999999
+		background	$black
+
+		# Colors		border		backgr.		text
+		focused_workspace	#073642 	#073642		#f0f0fe
+		active_workspace	#073642		#073642 	#696f89
+		inactive_workspace	#073642 	#073642		$white
+		urgent_workspace	$orange		$orange		$dark
+	}
+}
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	tray_output primary
+	output $display2
+	status_command i3blocks -c $HOME/.config/i3/i3blocks-small.conf
+	mode dock
+	position top
+	font pango:DejaVu Sans Mono, Awesome 18
+	strip_workspace_numbers no
+	colors {
+		statusline	#999999
+		background	$black
+
+		# Colors		border		backgr.		text
+		focused_workspace	#073642 	#073642		#f0f0fe
+		active_workspace	#073642		#073642 	#696f89
+		inactive_workspace	#073642 	#073642		$white
+		urgent_workspace	$orange		$orange		$dark
+	}
+}
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/volume inc #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/volume dec #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/volume mute # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec ~/.config/oggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+focus_follows_mouse no
+
+exec_always --no-startup-id sh $HOME/.fehbg
+exec --no-startup-id picom --config /dev/null
+# exec --no-startup-id conky -c ~/.config/onky/conkyrc
+# exec --no-startup-id udiskie -t
+exec --no-startup-id /usr/bin/numlockx on
+exec --no-startup-id /usr/bin/pasystray
+exec --no-startup-id /usr/bin/nextcloud
+
+set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
+mode "$mode_system" {
+	bindsym l exec --no-startup-id ~/.config/i3/i3exit lock, mode "default"
+	bindsym e exec --no-startup-id ~/.config/i3/i3exit logout, mode "default"
+	bindsym r exec --no-startup-id ~/.config/i3/i3exit reboot, mode "default"
+	bindsym s exec --no-startup-id ~/.config/i3/i3exit shutdown, mode "default"
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $mod+Escape mode "$mode_system"

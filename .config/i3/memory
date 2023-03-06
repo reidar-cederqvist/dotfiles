@@ -1,0 +1,22 @@
+#!/bin/bash
+
+awk '
+	/^MemTotal:/ {
+		mem_total=$2
+	}
+	/^MemAvailable:/ {
+		free=$2
+	}
+	END {
+		used = mem_total - free
+		percent = used/mem_total*100
+		printf("%.2f%\n", percent)
+		printf("%.2f%\n", percent)
+		if(percent > 66)
+			printf("#FA0C0D\n")
+		else if(percent > 33)
+			printf("#FACC2E\n")
+		else
+			printf("#00CC00\n")
+	}
+' /proc/meminfo

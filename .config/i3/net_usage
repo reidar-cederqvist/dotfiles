@@ -1,0 +1,38 @@
+#!/bin/bash
+usage="$(vnstat -i enp24s0 -tr 4 --json)"
+up="$(echo "$usage" | jq '.tx.bytespersecond')"
+down="$(echo "$usage" | jq '.rx.bytespersecond')"
+
+# long data
+if [ "$down" -lt 1024 ]; then
+	printf " %-4s B/s " "$down"
+elif [ "$down" -lt "$((1024*1024))" ]; then
+	printf " %-3s KB/s " "$((down/1024))"
+else
+	printf " %-3s MB/s " "$((down/1024/1024))"
+fi
+if [ "$up" -lt 1024 ]; then
+	printf " %-4s B/s\n" "$up"
+elif [ "$up" -lt "$((1024*1024))" ]; then
+	printf " %-3s KB/s\n" "$((up/1024))"
+else
+	printf " %-3s MB/s\n" "$((up/1024/1024))"
+fi
+
+# short data
+if [ "$down" -lt 1024 ]; then
+	printf " %-4s B/s\n" "$down"
+elif [ "$down" -lt "$((1024*1024))" ]; then
+	printf " %-3s KB/s\n" "$((down/1024))"
+else
+	printf " %-3s MB/s\n" "$((down/1024/1024))"
+fi
+
+# color
+if [ "$down" -gt "$((1024*1024*10))" ]; then
+	printf "#FA0C0D\n"
+elif [ "$down" -gt "$((1024*10))" ]; then
+	printf "#FACC2E\n"
+else
+	printf "#ffffff\n"
+fi
