@@ -17,6 +17,9 @@ alias reboot='systemctl reboot'
 alias shutdown='systemctl shutdown'
 alias resetkb='setxkbmap -layout se -variant nodeadkeys'
 alias c='clear'
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+alias ip='ip -c'
 # ls aliases
 if which exa 2>&1 >/dev/null; then
 	alias ls='exa'
