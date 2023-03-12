@@ -10,11 +10,40 @@ fi
 eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
 
 . ~/.prompt_colors.sh
+### EXPORT
 export TERM=xterm
+export TERM="xterm-256color"                      # getting proper colors
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export EDITOR="vim"              # $EDITOR use Emacs in terminal
+export VISUAL="vim"              # $VISUAL use Emacs in GUI mode
+
+### SET MANPAGER
+### Uncomment only one of these!
+
+### "bat" as manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Remove spaces from path
 tmp=$(echo $PATH | tr ':' '\n' | grep -v ' ' | tr '\n' ':')
 PATH=${tmp%:}
+
+# Append "$1" to $PATH when not already in.
+append_path () {
+	[ -d $1 ] || return
+	case ":$PATH:" in
+		*:"$1":*)
+			;;
+		*)
+			PATH="${PATH:+$PATH:}$1"
+	esac
+}
+
+# Append our default paths
+append_path "$HOME/.local/sbin"
+append_path "$HOME/.local/bin"
+
+# Force PATH to be environment
+export PATH
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
