@@ -47,6 +47,7 @@ set $dark	#00252E
 bindsym $mod+d exec i3-dmenu-desktop -dmenu="rofi -dmenu -i"
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+b exec xdg-open https://
+bindsym $mod+m exec $HOME/.local/bin/find_application.sh "Microsoft Teams"
 
 bindsym $mod+q exec grep '^bindsym' .config/i3/config | sed 's/bindsym //' | yad --text-info --no-buttons --close-on-unfocus --fullscreen --margins=10 --back=#002b36 --fore=#fff
 
