@@ -1,14 +1,28 @@
 #!/bin/sh
+
+
+lock(){
+	i3-msg workspace 8
+	i3-msg fullscreen disable
+	alacritty -o window.startup_mode=Fullscreen -e bash -c 'sleep 0.1 && cmatrix -ab -C cyan' &
+	pid1=$!
+	sleep 0.2
+	i3-msg workspace 1
+	i3-msg fullscreen disable
+	alacritty -o window.startup_mode=Fullscreen -e bash -c 'sleep 0.1 && cmatrix -ab -C cyan' &
+	pid2=$!
+	xtrlock
+	kill $pid1
+	kill $pid2
+}
 case "$1" in
     lock)
-		DIR="$HOME/.wallpapers"
-		PIC=$(ls $DIR/*.png | shuf -n 1)
 		if [ "$(playerctl status)" == "Playing" ]; then
 			playerctl play-pause
-			i3lock -n -i $PIC -t
+			lock
 			playerctl play-pause
 		else
-			i3lock -i $PIC -t
+			lock
 		fi
         ;;
     logout)
