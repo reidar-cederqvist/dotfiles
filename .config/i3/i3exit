@@ -2,18 +2,30 @@
 
 
 lock(){
-	i3-msg workspace 8
-	i3-msg fullscreen disable
-	alacritty -o window.startup_mode=Fullscreen -e bash -c 'sleep 0.1 && cmatrix -ab -C cyan' &
-	pid1=$!
-	sleep 0.2
-	i3-msg workspace 1
-	i3-msg fullscreen disable
-	alacritty -o window.startup_mode=Fullscreen -e bash -c 'sleep 0.1 && cmatrix -ab -C cyan' &
-	pid2=$!
+	# get a list of all visible workspaces
+	workspaces=$(i3-msg -t get_workspaces | jq '.[] | select(.visible) | .name')
+	# get the currently focused workspace
+	focused=$(i3-msg -t get_workspaces | jq '.[] | select(.focused) | .name')
+	# for every visible workspace do the following
+	# 	go to that workspace
+	# 	disable any fullscreen app
+	# 	start cmatrix and save the pid
+	# 	sleep to allow alacritty to start before moving to the next workspace
+	for w in $workspaces; do
+		i3-msg workspace "$w"
+		i3-msg fullscreen disable
+		alacritty -o window.startup_mode=Fullscreen -e bash -c 'sleep 0.1 && cmatrix -ab -C cyan' &
+		pids="$pids $!"
+		sleep 0.2
+	done
+	# start the lock
 	xtrlock
-	kill $pid1
-	kill $pid2
+	# when the lock is unlocked kill all allacritty windows with cmatrix
+	for pid in $pids; do
+		kill $pid
+	done
+	# move back to the focused workspace
+	i3-msg workspace "$focused"
 }
 case "$1" in
     lock)
