@@ -11,11 +11,10 @@ eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
 
 . ~/.prompt_colors.sh
 ### EXPORT
-export TERM=xterm
 export TERM="xterm-256color"                      # getting proper colors
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR="vim"              # $EDITOR use Emacs in terminal
-export VISUAL="vim"              # $VISUAL use Emacs in GUI mode
+export VISUAL="alacritty -e vim"              # $VISUAL use Emacs in GUI mode
 
 ### SET MANPAGER
 ### Uncomment only one of these!
