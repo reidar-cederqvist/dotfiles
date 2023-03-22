@@ -1,5 +1,6 @@
 #!/bin/bash
-usage="$(vnstat -i enp24s0 -tr 4 --json)"
+iface=$(ip l | awk -F '[: ]' '/UP/ {if($3 != "lo"){ print $3; exit}}')
+usage="$(vnstat -i $iface -tr 4 --json)"
 up="$(echo "$usage" | jq '.tx.bytespersecond')"
 down="$(echo "$usage" | jq '.rx.bytespersecond')"
 
