@@ -49,6 +49,10 @@ if [ "${DESKTOP_SESSION}" == "i3" ]; then
 	i3-msg restart
 fi
 
+if [ ! -f "${HOME}/.vim/autoload/plug.vim" ]; then
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
+
 # Termcap is outdated, old, and crusty, kill it.
 unset TERMCAP
 
