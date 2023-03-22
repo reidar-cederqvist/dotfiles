@@ -11,6 +11,7 @@ eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
 
 . ~/.prompt_colors.sh
 export TERM=xterm
+export EDITOR=vim
 
 # Remove spaces from path
 tmp=$(echo $PATH | tr ':' '\n' | grep -v ' ' | tr '\n' ':')
