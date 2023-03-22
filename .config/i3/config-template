@@ -110,8 +110,8 @@ set $workspace10 "10"
 set $workspace11 "11"
 
 
-set $display1 DP-2
-set $display2 HDMI-1
+set $display1 <PRIMARY>
+set $display2 <SECONDARY>
 
 #set workspace 8, 9 and 10 on laptop-screen and the rest on big screen
 workspace $workspace1 output $display1
@@ -155,7 +155,7 @@ bindsym $mod+Shift+plus move container to workspace $workspace11
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec "$HOME/.config/i3/fix_output.sh && i3-msg restart"
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -191,7 +191,6 @@ bar {
 	tray_output primary
 	output $display1
 	status_command i3blocks -c $HOME/.config/i3/i3blocks.conf
-	mode dock
 	position top
 	font pango:DejaVu Sans Mono, Awesome 18
 	strip_workspace_numbers no
