@@ -47,7 +47,7 @@ set $dark	#00252E
 bindsym $mod+d exec i3-dmenu-desktop -dmenu="rofi -dmenu -i"
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+b exec xdg-open https://
-bindsym $mod+m exec $HOME/.local/bin/find_application.sh "Microsoft Teams"
+bindsym $mod+m exec $HOME/.local/bin/find_application.sh "Teams for Linux"
 
 bindsym $mod+q exec grep '^bindsym' .config/i3/config | sed 's/bindsym //' | yad --text-info --no-buttons --close-on-unfocus --fullscreen --margins=10 --back=#002b36 --fore=#fff
 
@@ -249,7 +249,7 @@ bindsym XF86AudioPrev exec playerctl previous
 focus_follows_mouse no
 
 exec_always --no-startup-id sh $HOME/.fehbg
-exec --no-startup-id picom --config /dev/null
+exec --no-startup-id picom -f --config /dev/null
 # exec --no-startup-id conky -c ~/.config/onky/conkyrc
 # exec --no-startup-id udiskie -t
 exec --no-startup-id /usr/bin/numlockx on
