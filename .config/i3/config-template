@@ -44,7 +44,7 @@ set $orange	#E59847
 set $cyan	#2AA198
 set $dark	#00252E
 
-bindsym $mod+d exec i3-dmenu-desktop -dmenu="rofi -dmenu -i"
+bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+b exec xdg-open https://
 bindsym $mod+m exec $HOME/.local/bin/find_application.sh "Teams for Linux"
@@ -258,10 +258,10 @@ exec --no-startup-id /usr/bin/nextcloud
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
-	bindsym l exec --no-startup-id ~/.config/i3/i3exit lock, mode "default"
-	bindsym e exec --no-startup-id ~/.config/i3/i3exit logout, mode "default"
-	bindsym r exec --no-startup-id ~/.config/i3/i3exit reboot, mode "default"
-	bindsym s exec --no-startup-id ~/.config/i3/i3exit shutdown, mode "default"
+	bindsym l exec --no-startup-id my_exit lock, mode "default"
+	bindsym e exec --no-startup-id my_exit logout, mode "default"
+	bindsym r exec --no-startup-id my_exit reboot, mode "default"
+	bindsym s exec --no-startup-id my_exit shutdown, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"
