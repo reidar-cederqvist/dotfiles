@@ -26,20 +26,6 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 tmp=$(echo $PATH | tr ':' '\n' | grep -v ' ' | tr '\n' ':')
 PATH=${tmp%:}
 
-# Append "$1" to $PATH when not already in.
-append_path () {
-	[ -d $1 ] || return
-	case ":$PATH:" in
-		*:"$1":*)
-			;;
-		*)
-			PATH="${PATH:+$PATH:}$1"
-	esac
-}
-
-# Append our default paths
-append_path "$HOME/.local/sbin"
-append_path "$HOME/.local/bin"
 
 # Force PATH to be environment
 export PATH
