@@ -1,5 +1,5 @@
 #!/bin/bash
-iface=$(ip l | awk -F '[: ]' '/UP/ {if($3 != "lo"){ print $3; exit}}')
+iface=$(ip l | awk -F '[: ]' '/LOWER_UP/ {if($3 != "lo"){ print $3; exit}}')
 usage="$(vnstat -i $iface -tr 4 --json)"
 up="$(echo "$usage" | jq '.tx.bytespersecond')"
 down="$(echo "$usage" | jq '.rx.bytespersecond')"
