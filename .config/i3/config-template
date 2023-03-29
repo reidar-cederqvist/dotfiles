@@ -256,6 +256,7 @@ exec --no-startup-id /usr/bin/numlockx on
 exec --no-startup-id /usr/bin/pasystray
 exec --no-startup-id /usr/bin/nextcloud
 exec --no-startup-id /usr/bin/slack -u
+exec --no-startup-id /usr/bin/ckb-next -b
 
 set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
