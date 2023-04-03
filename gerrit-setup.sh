@@ -123,7 +123,7 @@ echo "Found project ${repo} on ${gerrit}"
 # Add commit hook
 if ! [ -x .git/hooks/commit-msg ]; then
     echo "Installing commit-msg hook (for Change-Id)"
-    scp -P ${port} -p ${gerrit}:hooks/commit-msg .git/hooks/
+    scp -O -P ${port} -p ${gerrit}:hooks/commit-msg .git/hooks/
     chmod a+x .git/hooks/commit-msg
 else
     echo "Found commit-msg hook"
