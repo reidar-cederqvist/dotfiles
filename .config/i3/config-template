@@ -155,7 +155,7 @@ bindsym $mod+Shift+plus move container to workspace $workspace11
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec "$HOME/.config/i3/fix_output.sh && i3-msg restart"
+bindsym $mod+Shift+r exec "bash /usr/share/sddm/scripts/Xsetup && bash $HOME/.config/i3/fix_output.sh && i3-msg restart"
 # exit i3 (logs you out of your X session)
 # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
