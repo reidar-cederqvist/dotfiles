@@ -258,12 +258,13 @@ exec --no-startup-id /usr/bin/nextcloud
 exec --no-startup-id /usr/bin/slack -u
 exec --no-startup-id /usr/bin/ckb-next -b
 
-set $mode_system System (l) lock, (e) logout, (r) reboot, (s) shutdown
+set $mode_system System (l)ock, (e)xit (r)eboot, s(u)spend, (s)hutdown
 mode "$mode_system" {
 	bindsym l exec --no-startup-id my_exit lock, mode "default"
 	bindsym e exec --no-startup-id my_exit logout, mode "default"
 	bindsym r exec --no-startup-id my_exit reboot, mode "default"
 	bindsym s exec --no-startup-id my_exit shutdown, mode "default"
+	bindsym u exec --no-startup-id my_exit suspend, mode "default"
 
 	# back to normal: Enter or Escape
 	bindsym Return mode "default"

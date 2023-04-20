@@ -46,6 +46,9 @@ case "$1" in
     shutdown)
         systemctl poweroff
         ;;
+    suspend)
+	systemctl suspend
+	;;
     *)
         echo "Usage: $0 {lock|logout|reboot|shutdown}"
         exit 2
