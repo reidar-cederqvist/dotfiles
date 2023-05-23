@@ -32,17 +32,17 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # Hybrid colors
-set $black	#002B36
-set $white	#839496
-set $gray	#CCCCCC
-set $darkgray	#666666
-set $green 	#799F26
-set $blue	#4D73AA
-set $purple	#8473A7
-set $red	#B58900
-set $orange	#E59847
-set $cyan	#2AA198
-set $dark	#00252E
+set_from_resource $black	i3wm.background	#002B36
+set_from_resource $white	i3wm.foreground	#839496
+set_from_resource $gray		i3wm.color7	#CCCCCC
+set_from_resource $darkgray	i3wm.color8	#666666
+set_from_resource $green	i3wm.color10	#799F26
+set_from_resource $blue		i3wm.color5	#4D73AA
+set_from_resource $purple	i3wm.color6	#8473A7
+set_from_resource $red		i3wm.color1	#B58900
+set_from_resource $orange	i3wm.color9	#E59847
+set_from_resource $cyan		i3wm.color2	#2AA198
+set_from_resource $dark		i3wm.color1	#00252E
 
 bindsym $mod+d exec rofi -show drun
 bindsym $mod+Shift+s exec flameshot gui
@@ -196,7 +196,7 @@ bar {
 	strip_workspace_numbers no
 	colors {
 		statusline	#999999
-		background	$black
+		background	#002B36
 
 		# Colors		border		backgr.		text
 		focused_workspace	#073642 	#073642		#f0f0fe
@@ -218,7 +218,7 @@ bar {
 	strip_workspace_numbers no
 	colors {
 		statusline	#999999
-		background	$black
+		background	#002B36
 
 		# Colors		border		backgr.		text
 		focused_workspace	#073642 	#073642		#f0f0fe
@@ -248,7 +248,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always --no-startup-id sh $HOME/.fehbg
+exec_always --no-startup-id wal -i $HOME/.wallpapers/
 exec --no-startup-id picom -f --config /dev/null
 # exec --no-startup-id conky -c ~/.config/onky/conkyrc
 # exec --no-startup-id udiskie -t

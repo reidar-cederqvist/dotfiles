@@ -8,17 +8,9 @@ configuration {
   icon-theme: "Noto";
 }
 
-@theme "/dev/null"
+@import "~/.cache/wal/colors-rofi-dark"
 
 * {
-  bg: #1e1e2ecc;
-  bg-alt: #585b70cc;
-  bg-selected: #313244cc;
-
-  fg: #cdd6f4;
-  fg-alt: #7f849c;
-
-  
   border: 0;
   margin: 0;
   padding: 0;
