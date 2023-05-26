@@ -21,7 +21,7 @@ for_window [class="Yad"] floating enable
 
 # Steam related rules
 for_window [class="^Steam$"] floating enable
-for_window [class="^Steam$" title="^Steam$"] floating disable
+# for_window [class="^Steam$" title="^Steam$"] floating disable
 
 for_window [class="^7dLauncher.x86_64$"] floating enable
 
@@ -251,7 +251,7 @@ focus_follows_mouse no
 exec_always --no-startup-id wal -i $HOME/.wallpapers/
 exec --no-startup-id picom -f --config /dev/null
 # exec --no-startup-id conky -c ~/.config/onky/conkyrc
-# exec --no-startup-id udiskie -t
+exec --no-startup-id udiskie -t
 exec --no-startup-id /usr/bin/numlockx on
 exec --no-startup-id /usr/bin/pasystray
 exec --no-startup-id /usr/bin/nextcloud
