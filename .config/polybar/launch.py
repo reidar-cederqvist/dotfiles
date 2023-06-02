@@ -4,7 +4,7 @@ import subprocess
 import os
 
 # os.system(f"echo \"test\" >>/home/reidar/polybar.log")
-time.sleep(1)
+time.sleep(2)
 os.system("killall -q polybar")
 # os.system(f"echo \"test2\" >>/home/reidar/polybar.log")
 monitors = subprocess.run(["xrandr", "--listactivemonitors"], capture_output=True, text=True)

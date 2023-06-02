@@ -205,16 +205,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 focus_follows_mouse no
 
-exec_always wal -i $HOME/.wallpapers/
-exec --no-startup-id picom -f --config /dev/null
-# exec --no-startup-id conky -c ~/.config/onky/conkyrc
-exec --no-startup-id udiskie -t
-exec --no-startup-id /usr/bin/numlockx on
-exec --no-startup-id /usr/bin/nextcloud
-exec --no-startup-id /usr/bin/slack -u
-exec --no-startup-id /usr/bin/ckb-next -b
-exec --no-startup-id /usr/bin/pasystray
-exec_always /usr/bin/python3 $HOME/.config/polybar/launch.py
+exec_always --no-startup-id $HOME/.config/i3/launch_always.sh
+exec --no-startup-id $HOME/.config/i3/launch.sh
 
 set $mode_system System (l)ock, (e)xit (r)eboot, s(u)spend, (s)hutdown
 mode "$mode_system" {
