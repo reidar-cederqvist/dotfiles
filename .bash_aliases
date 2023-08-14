@@ -65,7 +65,7 @@ alias free='free -m'
 alias lsblk='lsblk -o name,mountpoint,label,size,uuid'
 alias rename='perl-rename'
 
-alias buildserver='ssh se-ci-gs1.genexislocal.nl'
+alias buildserver='ssh se-ci-sbs1.genexislocal.nl'
 
 setup(){
 	if dir="$(git rev-parse --git-dir 2>/dev/null)"; then
