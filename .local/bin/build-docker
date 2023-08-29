@@ -1,0 +1,14 @@
+#!/bin/bash -eux
+
+ 
+
+docker run \
+    --rm \
+    -t \
+    -i \
+    -v ${HOME}/git/iopsys:/home/dev/iopsyswrt \
+    -v ${HOME}/.ssh:/home/dev/.ssh:ro \
+    -v ${SSH_AUTH_SOCK}:/ssh-agent \
+    -e SSH_AUTH_SOCK=/ssh-agent \
+    -u $(id -u):$(id -g) \
+    iopsys/sdk-builder:${1:-latest}
