@@ -20,7 +20,7 @@ export VISUAL="alacritty -e vim"              # $VISUAL use Emacs in GUI mode
 ### Uncomment only one of these!
 
 ### "bat" as manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+#export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Remove spaces from path
 tmp=$(echo $PATH | tr ':' '\n' | grep -v ' ' | tr '\n' ':')
