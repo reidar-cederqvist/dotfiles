@@ -43,6 +43,8 @@ alias ez='vim ~/.zshrc'
 alias eba='vim ~/.bash_aliases'
 alias ei='vim ~/.config/i3/config-template'
 alias ea='vim ~/.config/alacritty/alacritty.yml'
+alias eh='vim ~/.config/hypr/hyprland.conf'
+alias ehp='vim ~/.config/hypr/hyprpaper.conf'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
