@@ -9,8 +9,8 @@ echo $monitors
 for monitor in $monitors; do
 	hyprctl dispatch focusmonitor $monitor
 	alacritty -o window.startup_mode=Fullscreen -e bash -c "sleep 0.1 && cmatrix -ab -C cyan" &
+	sleep 0.4
 	pids="$pids $!"
-	sleep 0.2
 done
 
 swaylock -c "00000000"
