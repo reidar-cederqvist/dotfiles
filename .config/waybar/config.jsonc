@@ -18,6 +18,7 @@
 		"custom/updates",
 		"custom/language",
 		"battery",
+		"network",
 		"pulseaudio",
 		"pulseaudio#microphone",
 		"tray"
@@ -53,6 +54,13 @@
 	"clock": {
 		"format": "{: %R   %d/%m}",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"network": {
+		"format": "{ifname}",
+		"interval": 10,
+		"format-ethernet": "{ipaddr}/{cidr}",
+		"tooltip-format-ethernet": "{ifname}:  {bandwidthUpBytes}  {bandwidthDownBytes}",
+		"max-length": 40
 	},
 	"battery": {
 		"states": {
