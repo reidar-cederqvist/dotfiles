@@ -82,7 +82,7 @@ setup(){
 }
 
 # aliases for git --bare
-alias config='/usr/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 source /usr/share/bash-completion/completions/git
 __git_complete config __git_main
 
