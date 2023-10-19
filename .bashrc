@@ -8,6 +8,7 @@ if [ ! -f "$SSH_AGENT_FILE" -o "$(pidof ssh-agent)" == "" ]; then
 	echo "$(ssh-agent)" > $SSH_AGENT_FILE
 fi
 eval $(cat $SSH_AGENT_FILE) 2>&1 >/dev/null
+complete -cf sudo
 
 . ~/.prompt_colors.sh
 ### EXPORT
