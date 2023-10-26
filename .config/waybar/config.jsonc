@@ -33,7 +33,7 @@
 		"on-click": "activate"
 	},
 	"custom/updates": {
-		"format": " {}",
+		"format": " {}",
 		"interval": 7200,                     // every two hours
 		"exec": "i=$(checkupdates); echo -n \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
 		"exec-if": "exit 0",                  // always run; consider advanced run conditions
@@ -72,7 +72,7 @@
 		"format-charging": " {capacity}%",
 		"format-plugged": " {capacity}%",
 		"format-alt": "{time} {icon}",
-		"format-icons": ["", "", "", "", "", "", "", "", "", "", ""]
+		"format-icons": ["", "", "", "", ""]
 	},
 	"pulseaudio": {
 		"format": "{icon} {volume}%",
