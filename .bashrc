@@ -124,33 +124,6 @@ fi
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
-
-# some functions for stuff that is to advanced for alias
-
-router(){
-	if [ "$1" == "1" ]; then vlan="enp5s0.400";
-	elif [ "$1" == "2" ]; then vlan="enp5s0.401";
-	elif [ "$1" == "3" ]; then vlan="enp5s0.402";
-	else
-		return;
-	fi
-	sudo ifdown enp5s0.400 >/dev/null
-	sudo ifdown enp5s0.401 >/dev/null
-	sudo ifdown enp5s0.402 >/dev/null
-	sudo ifup $vlan >/dev/null
-}
-
-iopa(){
-	cd $HOME/git/iopsys || return 1
-	git co devel || return 1
-	git pull || return 1
-	iopf || return 1
-	iopg -c dg400 REIDAR || return 1
-	mp || return 1
-	iops || return 1
-}
-
 # Launch pfetch
 if which pfetch 2>/dev/null >/dev/null; then
 	pfetch
