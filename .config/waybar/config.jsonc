@@ -33,7 +33,7 @@
 		"on-click": "activate"
 	},
 	"custom/updates": {
-		"format": " {}",
+		"format": " {}",
 		"interval": 7200,                     // every two hours
 		"exec": "i=$(checkupdates); echo -n \"$i\" |wc -l; echo \"$i\" |column -t |tr '\n' '\r'",       // # of updates and tooltip details
 		"exec-if": "exit 0",                  // always run; consider advanced run conditions
@@ -77,7 +77,7 @@
 	"pulseaudio": {
 		"format": "{icon} {volume}%",
 		"tooltip": false,
-		"format-muted": " Muted",
+		"format-muted": " Muted",
 		"on-click": "pamixer -t",
 		"on-scroll-up": "pamixer -i 5",
 		"on-scroll-down": "pamixer -d 5",
@@ -94,8 +94,8 @@
 	},
 	"pulseaudio#microphone": {
 		"format": "{format_source}",
-		"format-source": " {volume}%",
-		"format-source-muted": " Muted",
+		"format-source": " {volume}%",
+		"format-source-muted": " Muted",
 		"on-click": "pamixer --default-source -t",
 		"on-scroll-up": "pamixer --default-source -i 5",
 		"on-scroll-down": "pamixer --default-source -d 5",
