@@ -49,11 +49,15 @@ fi
 
 width=$(echo "$raw" | jq ".[] | select(.name==\"$main_monitor\").width")
 
-sec_x=$(echo "$raw" | jq ".[] | select(.name==\"$sec_monitor\").width")
-sec_y=$(echo "$raw" | jq ".[] | select(.name==\"$sec_monitor\").height")
-sec_resolution="${sec_x}x${sec_y}"
+echo hyprctl keyword monitor $main_monitor, highres, 0x0, 1, bitdepth, 10
+echo hyprctl keyword monitor $sec_monitor, highres, ${width}x800, 1, bitdepth, 10
 
-sed -i 's/\$mainMonitor = .*/\$mainMonitor = '$main_monitor'/g' $CONF
-sed -i 's/\$secMonitor = .*/\$secMonitor = '$sec_monitor'/g' $CONF
-sed -i 's/monitor = \$secMonitor,.*/monitor = \$secMonitor, '$sec_resolution', '$width'x800, 1, bitdepth, 10/g' $CONF
+for ((i=1; i <= 7; i++)); do
+	cmd="$cmd keyword workspace $i, monitor:$main_monitor;"
+done
 
+for ((i=8; i <= 10; i++)); do
+	cmd="$cmd keyword workspace $i, monitor:$sec_monitor;"
+done
+
+echo hyprctl --batch $cmd
