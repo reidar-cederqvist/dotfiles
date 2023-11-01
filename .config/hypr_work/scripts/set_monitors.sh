@@ -49,8 +49,8 @@ fi
 
 width=$(echo "$raw" | jq ".[] | select(.name==\"$main_monitor\").width")
 
-echo hyprctl keyword monitor $main_monitor, highres, 0x0, 1, bitdepth, 10
-echo hyprctl keyword monitor $sec_monitor, highres, ${width}x800, 1, bitdepth, 10
+hyprctl keyword monitor $main_monitor, highres, 0x0, 1, bitdepth, 10
+hyprctl keyword monitor $sec_monitor, highres, ${width}x800, 1, bitdepth, 10
 
 for ((i=1; i <= 7; i++)); do
 	cmd="$cmd keyword workspace $i, monitor:$main_monitor;"
@@ -60,4 +60,4 @@ for ((i=8; i <= 10; i++)); do
 	cmd="$cmd keyword workspace $i, monitor:$sec_monitor;"
 done
 
-echo hyprctl --batch $cmd
+hyprctl --batch $cmd
