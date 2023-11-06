@@ -25,7 +25,12 @@
 	],
 
 	"hyprland/window": {
-		"format": "{}"
+		"format": "{}",
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "🌎 $1",
+			"reidar@reidar-arch:(.*)": "> $1",
+			"(.*) - VIM" : " - $1"
+		}
 	},
 	"hyprland/workspaces": {
 		"disable-scroll": true,

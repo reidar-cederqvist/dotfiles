@@ -99,9 +99,15 @@ tooltip {
     margin-left: 60px;
 }
 
+#window.empty {
+	margin: 0px;
+	border-right: none;
+}
+
 #clock {
     color: #fab387;
     border-radius: 0 10px 10px 0;
+    border-left: none;
     margin-right: 60px;
 }
 

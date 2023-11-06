@@ -50,6 +50,7 @@ filetype plugin indent on
 set path+=**
 set wildmenu
 set hls
+set title
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
