@@ -9,3 +9,4 @@ picom -f --config /dev/null &
 /usr/bin/slack -u &
 /usr/bin/ckb-next -b &
 /usr/bin/pasystray &
+/usr/bin/nm-applet &

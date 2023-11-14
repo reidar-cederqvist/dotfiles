@@ -123,6 +123,7 @@ if ! shopt -oq posix; then
 fi
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+[ -f $HOME/.cache/wal/sequences ] && cat $HOME/.cache/wal/sequences
 
 # Launch pfetch
 if which pfetch 2>/dev/null >/dev/null; then

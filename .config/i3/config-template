@@ -20,8 +20,8 @@ for_window [window_role="pop-up"] floting enable
 for_window [class="Yad"] floating enable
 
 # Steam related rules
-for_window [class="^Steam$"] floating enable
-# for_window [class="^Steam$" title="^Steam$"] floating disable
+for_window [class="[sS]team"] floating enable
+for_window [class="^steam$" title="^Steam$"] floating disable
 
 for_window [class="^7dLauncher.x86_64$"] floating enable
 

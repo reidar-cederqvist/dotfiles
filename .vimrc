@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'dylanaraps/wal.vim'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'christoomey/vim-system-copy'
 Plug 'ap/vim-css-color'
@@ -53,6 +54,7 @@ set hls
 set title
 set laststatus=2
 set encoding=utf-8
+colorscheme wal
 set t_Co=256
 " Map leader to spacbar
 let mapleader = " "
