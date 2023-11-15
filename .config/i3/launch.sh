@@ -1,5 +1,8 @@
 #!/bin/bash
 
+BG=$(find $HOME/.wallpapers/ -name *.jpg | sort -R | head -1)
+
+[ -f $BG ] && wal -i $BG
 $HOME/.config/polybar/launch.py
 picom -f --config /dev/null &
 /usr/bin/udiskie -t &
