@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BG=$(find $HOME/.wallpapers/ -name *.jpg | sort -R | head -1)
+BG=$(find $HOME/.wallpapers/ -name "*.jpg" | sort -R | head -1)
 
 [ -f $BG ] && wal -i $BG
 $HOME/.config/polybar/launch.py
