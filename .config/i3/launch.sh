@@ -3,6 +3,8 @@
 BG=$(find $HOME/.wallpapers/ -name "*.jpg" | sort -R | head -1)
 
 [ -f $BG ] && wal -i $BG
+killall -9 polybar
+sleep 0.2
 $HOME/.config/polybar/launch.py
 picom -f --config /dev/null &
 /usr/bin/udiskie -t &

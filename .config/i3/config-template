@@ -207,6 +207,7 @@ focus_follows_mouse no
 
 exec_always --no-startup-id $HOME/.config/i3/launch_always.sh
 exec --no-startup-id $HOME/.config/i3/launch.sh
+exec xinput set-prop "Synaptics TM3381-002" "libinput Tapping Enabled" 1
 
 set $mode_system System (l)ock, (e)xit (r)eboot, s(u)spend, (s)hutdown
 mode "$mode_system" {
