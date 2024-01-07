@@ -45,6 +45,7 @@ set_from_resource $cyan		i3wm.color2	#2AA198
 set_from_resource $dark		i3wm.color1	#00252E
 
 bindsym $mod+d exec rofi -show drun
+bindsym $mod+e exec --no-startup-id dolphin
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+b exec --no-startup-id firefox -P
 bindsym $mod+m exec --no-startup-id $HOME/.local/bin/find_application.sh "Microsoft Teams"

@@ -5,8 +5,29 @@ import os
 
 os.system("killall -q polybar")
 os.system("sleep 1")
-monitors = subprocess.run(["xrandr", "--listactivemonitors"], capture_output=True, text=True)
-monitors = [ i[1:] for i in monitors.stdout.split() if i.startswith("+") ]
+
+ls_p = subprocess.Popen(["xrandr"], stdout=subprocess.PIPE, text=True)
+grep_p = subprocess.Popen(["grep", " conn"], stdin=ls_p.stdout, stdout=subprocess.PIPE, text=True)
+lines, error = grep_p.communicate()
+
+def get_monitors(line):
+    items = line.split()
+    if len(items) < 3:
+        return
+    monitor=items[0]
+    print("test")
+    if items[2] == "primary":
+        return "*"+items[0]
+    else:
+        return items[0]
+
+monitors = []
+for line in lines.split("\n"):
+    res = get_monitors(line)
+    if res:
+        monitors.append(res)
+
+
 
 for monitor in monitors:
     if monitor.startswith("*"):
