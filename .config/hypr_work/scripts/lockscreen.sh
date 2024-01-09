@@ -2,13 +2,14 @@
 #
 
 monitors=$(hyprctl -j monitors | jq -r .[].name)
+hyprctl dispatch cyclenext prev
 active_window_address=$(hyprctl -j activewindow | jq -r .address)
 
 echo $monitors
 
 for monitor in $monitors; do
 	hyprctl dispatch focusmonitor $monitor
-	alacritty -o window.startup_mode=Fullscreen -e bash -c "sleep 0.1 && cmatrix -ab -C cyan" &
+	alacritty -o 'window.startup_mode="Fullscreen"' -e bash -c "sleep 0.1 && cmatrix -ab -C cyan" &
 	sleep 0.4
 	pids="$pids $!"
 done
