@@ -48,7 +48,8 @@ bindsym $mod+d exec rofi -show drun
 bindsym $mod+e exec --no-startup-id dolphin
 bindsym $mod+Shift+s exec flameshot gui
 bindsym $mod+b exec --no-startup-id firefox -P
-bindsym $mod+m exec --no-startup-id $HOME/.local/bin/find_application.sh "Microsoft Teams"
+bindsym $mod+m exec --no-startup-id $HOME/.local/bin/find_application.sh "Iopsys Teams"
+bindsym $mod+Shift+m exec --no-startup-id $HOME/.local/bin/find_application.sh "Genexis Teams"
 
 bindsym $mod+q exec grep '^bindsym' .config/i3/config | sed 's/bindsym //' | yad --text-info --no-buttons --close-on-unfocus --fullscreen --margins=10 --back=#002b36 --fore=#fff
 
